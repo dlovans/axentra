@@ -16,6 +16,65 @@
   // Scroll to top button visibility
   let showScrollButton = false;
   
+  // Form handling
+  let name = '';
+  let email = '';
+  let message = '';
+  let isSubmitting = false;
+  let formStatus = { type: '', message: '' };
+  let formTouched = { name: false, email: false, message: false };
+  
+  // Form validation
+  $: nameError = formTouched.name && !name ? 'Namn krävs' : '';
+  $: emailError = formTouched.email && (!email || !/^\S+@\S+\.\S+$/.test(email)) 
+      ? 'Ange en giltig e-postadress' : '';
+  $: messageError = formTouched.message && !message ? 'Meddelande krävs' : '';
+  $: isFormValid = name && email && message && !nameError && !emailError && !messageError;
+  
+  // Form submission handler
+  async function handleSubmit() {
+    // Mark all fields as touched
+    formTouched = { name: true, email: true, message: true };
+    
+    // Don't submit if form is invalid
+    if (!isFormValid) return;
+    
+    // Set submitting state
+    isSubmitting = true;
+    formStatus = { type: '', message: '' };
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        // Show success message
+        formStatus = { type: 'success', message: result.message };
+        // Reset form fields
+        name = '';
+        email = '';
+        message = '';
+        formTouched = { name: false, email: false, message: false };
+      } else {
+        // Show error message
+        formStatus = { type: 'error', message: result.error };
+      }
+    } catch (error) {
+      // Show generic error message
+      formStatus = { 
+        type: 'error', 
+        message: 'Ett fel uppstod när meddelandet skulle skickas. Försök igen senare.'
+      };
+    } finally {
+      isSubmitting = false;
+    }
+  }
+  
   // Toggle mobile menu
   function toggleMobileMenu() {
     mobileMenuOpen = !mobileMenuOpen;
@@ -25,6 +84,35 @@
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+    }
+  }
+  
+  // Smooth scroll to section when clicking nav links
+  function handleNavClick(e, href) {
+    e.preventDefault();
+    
+    // If it's a hash link, handle smooth scrolling
+    if (href.startsWith('#')) {
+      const targetId = href === '#' ? 'body' : href.substring(1);
+      const targetElement = targetId === 'body' 
+        ? document.body 
+        : document.getElementById(targetId);
+      
+      if (targetElement) {
+        // Close mobile menu if open
+        if (mobileMenuOpen) {
+          closeMenu();
+        }
+        
+        // Scroll to the target element smoothly
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    } else {
+      // For non-hash links, navigate normally
+      window.location.href = href;
     }
   }
   
@@ -134,6 +222,7 @@
                 <a 
                   href={item.href} 
                   class="relative px-2 py-1 font-medium group"
+                  on:click={(e) => handleNavClick(e, item.href)}
                 >
                   <span class="relative z-10 transition-colors duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-violet-400 group-hover:to-fuchsia-500">{item.name}</span>
                   <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-violet-400 to-fuchsia-500 transition-all duration-300 group-hover:w-full"></span>
@@ -188,7 +277,7 @@
               <a 
                 href={item.href} 
                 class="text-2xl font-bold relative group inline-block"
-                on:click={closeMenu}
+                on:click={(e) => handleNavClick(e, item.href)}
               >
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-fuchsia-500">
                   {item.name}
@@ -324,7 +413,10 @@
       <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
         Vi hjälper innovativa startups att lansera sina MVP-webbappar på rekordtid.
       </p>
-      <a href="#contact" class="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold py-3 px-8 rounded-full text-lg transition-all shadow-lg hover:shadow-violet-500/20">
+      <a href="#contact" 
+         class="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold py-3 px-8 rounded-full text-lg transition-all shadow-lg hover:shadow-violet-500/20"
+         on:click={(e) => handleNavClick(e, '#contact')}
+      >
         Kom igång idag
       </a>
     </div>
@@ -611,21 +703,72 @@
   <section id="contact" class="py-20 px-4 bg-gray-900">
     <div class="container mx-auto max-w-xl">
       <h2 class="text-4xl font-bold text-center mb-10">Kontakta oss</h2>
-      <form class="space-y-6">
+      <form class="space-y-6" on:submit|preventDefault={handleSubmit}>
+        {#if formStatus.message}
+          <div 
+            class="p-4 rounded-lg mb-6 {formStatus.type === 'success' ? 'bg-green-800/30 border border-green-700 text-green-300' : 'bg-red-800/30 border border-red-700 text-red-300'}"
+            transition:fade={{ duration: 200 }}
+          >
+            {formStatus.message}
+          </div>
+        {/if}
+        
         <div>
           <label for="name" class="block text-sm font-medium mb-2">Namn</label>
-          <input type="text" id="name" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500">
+          <input 
+            type="text" 
+            id="name" 
+            bind:value={name}
+            on:blur={() => formTouched.name = true}
+            class="w-full px-4 py-3 bg-gray-800 border {nameError ? 'border-red-500' : 'border-gray-700'} rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500"
+          >
+          {#if nameError}
+            <p class="mt-1 text-sm text-red-400">{nameError}</p>
+          {/if}
         </div>
+        
         <div>
           <label for="email" class="block text-sm font-medium mb-2">E-post</label>
-          <input type="email" id="email" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500">
+          <input 
+            type="email" 
+            id="email" 
+            bind:value={email}
+            on:blur={() => formTouched.email = true}
+            class="w-full px-4 py-3 bg-gray-800 border {emailError ? 'border-red-500' : 'border-gray-700'} rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500"
+          >
+          {#if emailError}
+            <p class="mt-1 text-sm text-red-400">{emailError}</p>
+          {/if}
         </div>
+        
         <div>
           <label for="message" class="block text-sm font-medium mb-2">Idé</label>
-          <textarea id="message" rows="4" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 resize-none"></textarea>
+          <textarea 
+            id="message" 
+            rows="4" 
+            bind:value={message}
+            on:blur={() => formTouched.message = true}
+            class="w-full px-4 py-3 bg-gray-800 border {messageError ? 'border-red-500' : 'border-gray-700'} rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 resize-none"
+          ></textarea>
+          {#if messageError}
+            <p class="mt-1 text-sm text-red-400">{messageError}</p>
+          {/if}
         </div>
-        <button type="submit" class="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold py-3 px-6 rounded-lg transition-all shadow-lg hover:shadow-violet-500/20">
-          Skicka
+        
+        <button 
+          type="submit" 
+          class="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold py-3 px-6 rounded-lg transition-all shadow-lg hover:shadow-violet-500/20 flex justify-center items-center disabled:opacity-70 disabled:cursor-not-allowed"
+          disabled={isSubmitting}
+        >
+          {#if isSubmitting}
+            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Skickar...
+          {:else}
+            Skicka
+          {/if}
         </button>
       </form>
     </div>
@@ -699,7 +842,7 @@
                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
               </svg>
-              <a href="mailto:dlovan@axentra.app" class="hover:text-violet-400 transition-colors">dlovan@axentra.app</a>
+              <a href="mailto:dlovan@axentra.agency" class="hover:text-violet-400 transition-colors">dlovan@axentra.agency</a>
             </li>
           </ul>
         </div>
@@ -710,7 +853,10 @@
           <ul class="space-y-2 text-gray-400">
             {#each navItems as item}
               <li>
-                <a href={item.href} class="hover:text-violet-400 transition-colors flex items-center">
+                <a href={item.href} 
+                   class="hover:text-violet-400 transition-colors flex items-center"
+                   on:click={(e) => handleNavClick(e, item.href)}
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-violet-400" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                   </svg>
