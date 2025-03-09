@@ -1,0 +1,15 @@
+# robots.txt for Axentra
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://axentra.agency/sitemap.xml
+
+# Crawl-delay for specific bots (optional)
+User-agent: AdsBot-Google
+Crawl-delay: 1
+
+# Disallow specific paths if needed in the future
+# Disallow: /admin/
+# Disallow: /private/ 
