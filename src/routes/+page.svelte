@@ -973,7 +973,7 @@
               
               <h3 class="text-xl font-bold mb-4 mt-2 text-center">Möte</h3>
               <p class="text-gray-300 text-center">
-                Vi bokar ett möte på ett café i Stockholm för att diskutera ditt projekt i detalj.
+                Vi bokar ett möte i Stockholm för att diskutera ditt projekt i detalj.
               </p>
             </div>
             <div class="hidden md:block absolute top-1/2 right-0 w-1/2 h-0.5 bg-gradient-to-r from-violet-400 to-fuchsia-500 transform translate-x-4"></div>
@@ -1145,10 +1145,6 @@
             </div>
             
             <h3 class="text-2xl font-bold mb-4 text-center">Timbaserad</h3>
-            <div class="mb-4 text-center">
-              <span class="text-3xl font-bold text-violet-400">1200 SEK</span>
-              <span class="text-gray-400 text-sm">/h (exkl. moms)</span>
-            </div>
             <p class="text-gray-300 mb-6 text-center">
               Flexibel utveckling efter dina behov med transparent timdebitering.
             </p>
