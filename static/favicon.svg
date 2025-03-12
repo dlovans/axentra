@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 100 100">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="-5 -5 110 110">
   <!-- Gradient definitions -->
   <defs>
     <linearGradient id="gradientLine" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -16,7 +16,7 @@
   </defs>
   
   <!-- Background circle -->
-  <circle cx="50" cy="50" r="50" fill="#1F2937" />
+  <circle cx="50" cy="50" r="48" fill="#1F2937" />
   
   <!-- Code brackets -->
   <path 
