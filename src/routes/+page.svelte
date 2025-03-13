@@ -11,7 +11,6 @@
   // Contact form state
   let name = $state('');
   let email = $state('');
-  let subject = $state('');
   let message = $state('');
   let isSubmitting = $state(false);
   let submitStatus = $state(null); // null, 'success', 'error'
@@ -24,7 +23,14 @@
   function scrollToContact() {
     const contactElement = document.getElementById('contact-section');
     if (contactElement) {
-      contactElement.scrollIntoView({ behavior: 'smooth' });
+      // Get the navbar height (approximately)
+      const navbarHeight = 40; // Reduced offset for more subtle adjustment
+      
+      // Scroll to element with offset
+      window.scrollTo({
+        top: contactElement.offsetTop - navbarHeight,
+        behavior: 'smooth'
+      });
     }
   }
   
@@ -32,7 +38,6 @@
   let errors = $state({
     name: '',
     email: '',
-    subject: '',
     message: ''
   });
   
@@ -52,7 +57,6 @@
     errors = {
       name: '',
       email: '',
-      subject: '',
       message: ''
     };
     
@@ -69,11 +73,6 @@
       isValid = false;
     } else if (!isValidEmail(email)) {
       errors.email = 'Ange en giltig e-postadress';
-      isValid = false;
-    }
-    
-    if (!subject.trim()) {
-      errors.subject = 'Ämne är obligatoriskt';
       isValid = false;
     }
     
@@ -97,7 +96,6 @@
         body: JSON.stringify({
           name,
           email,
-          subject,
           message
         })
       });
@@ -109,7 +107,6 @@
         // Reset form on success
         name = '';
         email = '';
-        subject = '';
         message = '';
       } else {
         submitStatus = 'error';
@@ -218,6 +215,203 @@
     
     animate();
   });
+  
+  // Language state management
+  let currentLanguage = $state('sv'); // Default to Swedish
+  
+  // Text content for different languages
+  const translations = {
+    sv: {
+      // Navbar
+      home: 'Hem',
+      process: 'Process',
+      pricing: 'Priser',
+      contact: 'Kontakt',
+      login: 'Logga In',
+      
+      // Hero section
+      heroTitle: 'Supersnabb MVP-utveckling för startups',
+      heroSubtitle: 'Vi hjälper dig att bygga din produkt på rekordtid',
+      heroButton: 'Läs Mer',
+      
+      // Feature cards
+      featureTitle: 'Vad Vi Erbjuder',
+      
+      // Specialty cards
+      specialtyTitle: 'Vår Specialitet',
+      specialty1: 'Supersnabb Utveckling',
+      specialty2: 'Startup Fokus',
+      specialty3: 'Webbutveckling',
+      
+      // Process section
+      processTitle: 'Vår Process',
+      process1Title: 'Första Kontakt',
+      process1Desc: 'Kontakta oss via formuläret på vår hemsida. Berätta kort om din idé, så återkommer vi inom 24 timmar.',
+      process2Title: 'Möte i Stockholm',
+      process2Desc: 'Vi träffas personligen i Stockholm för att diskutera projektet i detalj och få en djupare förståelse för din vision, mål och tekniska behov.',
+      process3Title: 'Planering & Avtal',
+      process3Desc: 'Vi diskuterar priser, samarbetsformer och projektets omfattning. Vi definierar tydliga mål, tidslinjer och leverabler för att säkerställa projektets framgång.',
+      process4Title: 'Utveckling & Feedback',
+      process4Desc: 'Vi påbörjar utvecklingen med kontinuerlig feedback-loop. Du får regelbundna uppdateringar och möjlighet att testa och ge feedback under hela processen.',
+      
+      // Pricing section
+      pricingTitle: 'Prismodeller',
+      pricing1Title: 'Timpris',
+      pricing1Price: 'SEK X',
+      pricing1Unit: '/timme',
+      pricing1Point1: 'Flexibelt och transparent',
+      pricing1Point2: 'Perfekt för mindre projekt',
+      pricing1Point3: 'Ingen långsiktig förbindelse',
+      pricing1Point4: 'Betalning efter utfört arbete',
+      
+      pricing2Title: 'Fast Pris',
+      pricing2Price: 'SEK Y',
+      pricing2Unit: '/projekt',
+      pricing2Point1: 'Förutsägbara kostnader',
+      pricing2Point2: 'Tydligt definierad omfattning',
+      pricing2Point3: 'Etappvis betalningsplan',
+      pricing2Point4: 'Populärt för MVP-projekt',
+      
+      pricing3Title: 'Fast Pris + Aktier',
+      pricing3Price: 'SEK Z + aktier',
+      pricing3Unit: '',
+      pricing3Point1: 'Lägre initial kostnad',
+      pricing3Point2: 'Delade intressen',
+      pricing3Point3: 'Perfekt för startups med begränsad budget',
+      pricing3Point4: 'Långsiktig vision',
+      pricing3Recommended: 'Rekommenderad',
+      
+      pricing4Title: 'Medgrundare',
+      pricing4Price: 'Equity',
+      pricing4Unit: '',
+      pricing4Point1: 'Fullt engagemang i projektet',
+      pricing4Point2: 'Teknisk medgrundare',
+      pricing4Point3: 'Strategisk partner',
+      pricing4Point4: 'Långsiktig tillväxtfokus',
+      
+      // Contact section
+      contactTitle: 'Kontakta Oss',
+      contactSubtitle: 'Redo att ta nästa steg? Fyll i formuläret nedan eller kontakta oss direkt via e-post.',
+      contactFormTitle: 'Skicka ett Meddelande',
+      contactName: 'Ditt Namn',
+      contactEmail: 'Din E-post',
+      contactSubject: 'Ämne',
+      contactMessage: 'Meddelande',
+      contactSend: 'Skicka Meddelande',
+      contactSuccess: 'Tack för ditt meddelande! Vi återkommer så snart som möjligt.',
+      contactError: 'Ett fel uppstod. Vänligen försök igen.',
+      
+      // Footer
+      footerDesc: 'Vi hjälper startups att bygga marknadsfärdiga MVPs på rekordtid. Vår expertis inom webbutveckling och startup-fokuserade lösningar gör oss till den perfekta partnern för din digitala resa.',
+      footerLinks: 'Snabblänkar',
+      footerInnovation: 'Digital Innovation',
+      footerQuote: 'Turning ideas into digital reality',
+      footerCopyright: 'Alla rättigheter förbehållna.',
+      
+      // Fixed button
+      contactButton: 'Kontakta Oss'
+    },
+    en: {
+      // Navbar
+      home: 'Home',
+      process: 'Process',
+      pricing: 'Pricing',
+      contact: 'Contact',
+      login: 'Log In',
+      
+      // Hero section
+      heroTitle: 'Superfast MVP Development for Startups',
+      heroSubtitle: 'We help you build your product in record time',
+      heroButton: 'Learn More',
+      
+      // Feature cards
+      featureTitle: 'What We Offer',
+      
+      // Specialty cards
+      specialtyTitle: 'Our Specialty',
+      specialty1: 'Supercharged Development',
+      specialty2: 'Startup Focus',
+      specialty3: 'Web Development',
+      
+      // Process section
+      processTitle: 'Our Process',
+      process1Title: 'First Contact',
+      process1Desc: 'Contact us through the form on our website. Briefly tell us about your idea, and we will get back to you within 24 hours.',
+      process2Title: 'Meeting in Stockholm',
+      process2Desc: 'We meet in person in Stockholm to discuss the project in detail and gain a deeper understanding of your vision, goals, and technical needs.',
+      process3Title: 'Planning & Agreement',
+      process3Desc: 'We discuss pricing, collaboration forms, and project scope. We define clear goals, timelines, and deliverables to ensure project success.',
+      process4Title: 'Development & Feedback',
+      process4Desc: 'We begin development with a continuous feedback loop. You receive regular updates and opportunities to test and provide feedback throughout the process.',
+      
+      // Pricing section
+      pricingTitle: 'Pricing Models',
+      pricing1Title: 'Hourly Rate',
+      pricing1Price: 'SEK X',
+      pricing1Unit: '/hour',
+      pricing1Point1: 'Flexible and transparent',
+      pricing1Point2: 'Perfect for smaller projects',
+      pricing1Point3: 'No long-term commitment',
+      pricing1Point4: 'Payment after work completed',
+      
+      pricing2Title: 'Fixed Sum',
+      pricing2Price: 'SEK Y',
+      pricing2Unit: '/project',
+      pricing2Point1: 'Predictable costs',
+      pricing2Point2: 'Clearly defined scope',
+      pricing2Point3: 'Staged payment plan',
+      pricing2Point4: 'Popular for MVP projects',
+      
+      pricing3Title: 'Fixed Sum + Stocks',
+      pricing3Price: 'SEK Z + stocks',
+      pricing3Unit: '',
+      pricing3Point1: 'Lower initial cost',
+      pricing3Point2: 'Shared interests',
+      pricing3Point3: 'Perfect for startups with limited budget',
+      pricing3Point4: 'Long-term vision',
+      pricing3Recommended: 'Recommended',
+      
+      pricing4Title: 'Cofounder Package',
+      pricing4Price: 'Equity',
+      pricing4Unit: '',
+      pricing4Point1: 'Full project engagement',
+      pricing4Point2: 'Technical co-founder',
+      pricing4Point3: 'Strategic partner',
+      pricing4Point4: 'Long-term growth focus',
+      
+      // Contact section
+      contactTitle: 'Contact Us',
+      contactSubtitle: 'Ready to take the next step? Fill out the form below or contact us directly via email.',
+      contactFormTitle: 'Send a Message',
+      contactName: 'Your Name',
+      contactEmail: 'Your Email',
+      contactSubject: 'Subject',
+      contactMessage: 'Message',
+      contactSend: 'Send Message',
+      contactSuccess: 'Thank you for your message! We will get back to you as soon as possible.',
+      contactError: 'An error occurred. Please try again.',
+      
+      // Footer
+      footerDesc: 'We help startups build market-ready MVPs in record time. Our expertise in web development and startup-focused solutions makes us the perfect partner for your digital journey.',
+      footerLinks: 'Quick Links',
+      footerInnovation: 'Digital Innovation',
+      footerQuote: 'Turning ideas into digital reality',
+      footerCopyright: 'All rights reserved.',
+      
+      // Fixed button
+      contactButton: 'Contact Us'
+    }
+  };
+  
+  // Function to toggle language
+  function toggleLanguage() {
+    currentLanguage = currentLanguage === 'sv' ? 'en' : 'sv';
+  }
+  
+  // Helper function to get text based on current language
+  function t(key) {
+    return translations[currentLanguage][key];
+  }
 </script>
 
 <div class="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800">
@@ -257,9 +451,9 @@
       </div>
       
       <!-- Login Button -->
-      <button class="login-btn px-4 py-2 md:px-6 md:py-2 rounded-full bg-gradient-to-r from-cyan-500/80 via-blue-500/80 to-teal-500/80 text-white font-medium text-sm md:text-base hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 transform hover:scale-105">
+      <a href="/login" class="login-btn px-4 py-2 md:px-6 md:py-2 rounded-full bg-gradient-to-r from-cyan-500/80 via-blue-500/80 to-teal-500/80 text-white font-medium text-sm md:text-base hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 transform hover:scale-105">
         Logga In
-      </button>
+      </a>
     </div>
   </div>
   
@@ -331,17 +525,9 @@
               Lansera Din Startup Snabbare
             </span>
           </h2>
-          <p class="text-gray-300 text-lg md:text-xl mb-6">
+          <p class="text-gray-300 text-lg md:text-xl">
             Vi bygger marknadsfärdiga MVPs på veckor, inte månader. Förvandla din vision till verklighet med vår snabba utvecklingsmetod.
           </p>
-          <div class="flex flex-col sm:flex-row gap-4">
-            <button class="px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500/90 via-teal-500/90 to-cyan-500/90 text-white font-medium hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-300 transform hover:scale-105">
-              Starta Ditt Projekt
-            </button>
-            <button class="px-6 py-3 rounded-full bg-gray-800/20 border border-emerald-500/20 text-white font-medium hover:bg-gray-800/30 transition-all duration-300">
-              Se Våra Arbeten
-            </button>
-          </div>
         </div>
         
         <!-- Stats Card -->
@@ -367,7 +553,7 @@
       <div class="w-full lg:w-1/2 space-y-4">
         <!-- Feature Card 1 -->
         <div class="hero-card backdrop-blur-sm bg-gray-800/25 border border-purple-500/30 shadow-lg shadow-purple-500/10 rounded-2xl p-6 transform transition-all duration-300 hover:translate-y-[-5px]">
-          <div class="flex items-start gap-4">
+          <div class="flex items-center gap-4">
             <div class="rounded-full bg-purple-500/30 p-3 border border-purple-500/40">
               <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -382,7 +568,7 @@
         
         <!-- Feature Card 2 -->
         <div class="hero-card backdrop-blur-sm bg-gray-800/25 border border-rose-500/30 shadow-lg shadow-rose-500/10 rounded-2xl p-6 transform transition-all duration-300 hover:translate-y-[-5px]">
-          <div class="flex items-start gap-4">
+          <div class="flex items-center gap-4">
             <div class="rounded-full bg-rose-500/30 p-3 border border-rose-500/40">
               <svg class="w-6 h-6 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
@@ -397,7 +583,7 @@
         
         <!-- Feature Card 3 -->
         <div class="hero-card backdrop-blur-sm bg-gray-800/25 border border-amber-500/30 shadow-lg shadow-amber-500/10 rounded-2xl p-6 transform transition-all duration-300 hover:translate-y-[-5px]">
-          <div class="flex items-start gap-4">
+          <div class="flex items-center gap-4">
             <div class="rounded-full bg-amber-500/30 p-3 border border-amber-500/40">
               <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -754,7 +940,7 @@
         <div class="flip-container {submitStatus === 'success' ? 'flipped' : ''}">
           <div class="flipper">
             <!-- Front side (form) -->
-            <div class="front">
+            <div class="front pb-0">
               <h3 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-6">Skicka ett Meddelande</h3>
               
               {#if submitStatus === 'error'}
@@ -768,7 +954,7 @@
                 </div>
               {/if}
               
-              <form class="space-y-6 form-container" on:submit={handleSubmit}>
+              <form class="space-y-6 form-container" onsubmit={handleSubmit}>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label for="name" class="block text-gray-300 mb-2">Namn</label>
@@ -797,19 +983,6 @@
                 </div>
                 
                 <div>
-                  <label for="subject" class="block text-gray-300 mb-2">Ämne</label>
-                  <div class="relative">
-                    <input 
-                      type="text" 
-                      id="subject" 
-                      bind:value={subject}
-                      class="w-full px-4 py-3 bg-gray-800/50 border {errors.subject ? 'border-rose-500' : 'border-gray-600'} rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent text-white" 
-                      placeholder="Vad handlar ditt meddelande om?">
-                    <p class="text-rose-500 text-sm mt-1 min-h-[20px]">{errors.subject}</p>
-                  </div>
-                </div>
-                
-                <div>
                   <label for="message" class="block text-gray-300 mb-2">Meddelande</label>
                   <div class="relative">
                     <textarea 
@@ -825,7 +998,7 @@
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  class="w-full py-3 rounded-lg bg-gradient-to-r from-cyan-500/90 via-blue-500/90 to-teal-500/90 text-white font-medium hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 transform hover:scale-105 disabled:opacity-70 disabled:transform-none disabled:hover:shadow-none">
+                  class="submit-btn w-full py-3 rounded-lg bg-gradient-to-r from-cyan-500/90 via-blue-500/90 to-teal-500/90 text-white font-medium hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 relative overflow-hidden disabled:opacity-70 disabled:hover:shadow-none mb-0">
                   {#if isSubmitting}
                     <span class="flex items-center justify-center">
                       <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -855,15 +1028,14 @@
                 <p class="text-gray-300 text-lg mb-8">Tack för ditt meddelande! Vi återkommer till dig inom kort.</p>
                 <button 
                   type="button" 
-                  on:click={() => {
+                  onclick={() => {
                     submitStatus = null;
                     // Reset form fields for a fresh start
                     name = '';
                     email = '';
-                    subject = '';
                     message = '';
                   }}
-                  class="px-6 py-3 rounded-lg bg-gradient-to-r from-emerald-500/90 to-teal-500/90 text-white font-medium hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-300 transform hover:scale-105 relative z-10">
+                  class="submit-btn px-6 py-3 rounded-lg bg-gradient-to-r from-emerald-500/90 to-teal-500/90 text-white font-medium hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-300 relative overflow-hidden z-10">
                   Skicka ett nytt meddelande
                 </button>
               </div>
@@ -876,7 +1048,7 @@
       <div class="flex flex-col gap-6">
         <!-- Email Card -->
         <div class="contact-card backdrop-blur-sm bg-gray-800/35 border border-blue-500/30 shadow-lg shadow-blue-500/10 rounded-2xl p-6 transform transition-all duration-300 hover:translate-y-[-5px]">
-          <div class="flex items-start gap-4">
+          <div class="flex items-center gap-4">
             <div class="rounded-full bg-blue-500/30 p-4 flex items-center justify-center border border-blue-500/40">
               <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
@@ -892,7 +1064,7 @@
         
         <!-- Location Card -->
         <div class="contact-card backdrop-blur-sm bg-gray-800/35 border border-purple-500/30 shadow-lg shadow-purple-500/10 rounded-2xl p-6 transform transition-all duration-300 hover:translate-y-[-5px]">
-          <div class="flex items-start gap-4">
+          <div class="flex items-center gap-4">
             <div class="rounded-full bg-purple-500/30 p-4 flex items-center justify-center border border-purple-500/40">
               <svg class="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -909,7 +1081,7 @@
         
         <!-- Response Time Card -->
         <div class="contact-card backdrop-blur-sm bg-gray-800/35 border border-emerald-500/30 shadow-lg shadow-emerald-500/10 rounded-2xl p-6 transform transition-all duration-300 hover:translate-y-[-5px]">
-          <div class="flex items-start gap-4">
+          <div class="flex items-center gap-4">
             <div class="rounded-full bg-emerald-500/30 p-4 flex items-center justify-center border border-emerald-500/40">
               <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -927,7 +1099,7 @@
   </div>
 
   <!-- Footer Section -->
-  <div class="relative container mx-auto px-4 pb-8">
+  <div class="relative container mx-auto px-4 py-16 pb-8">
     <div class="footer-container backdrop-blur-sm bg-gray-800/35 border border-cyan-500/30 shadow-lg shadow-cyan-500/10 rounded-2xl p-8 relative overflow-hidden">
       <!-- Inward curved corners effect -->
       <div class="absolute top-0 left-0 w-8 h-8 bg-gray-900 rounded-br-xl"></div>
@@ -1160,7 +1332,8 @@
   <a 
     href="#contact-section" 
     class="fixed bottom-6 right-6 z-40 px-4 py-3 rounded-full bg-gradient-to-r from-cyan-500/90 via-blue-500/90 to-teal-500/90 text-white font-medium shadow-lg shadow-cyan-500/20 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 group no-underline"
-    on:click|preventDefault={(e) => {
+    onclick={(e) => {
+      e.preventDefault();
       const contactElement = document.getElementById('contact-section');
       if (contactElement) {
         // Get the navbar height (approximately)
@@ -1255,6 +1428,7 @@
   
   .form-container {
     padding: 0 2px;
+    margin-bottom: 0;
   }
   
   /* 3D Flip Animation for Contact Form */
@@ -1262,7 +1436,7 @@
     perspective: 1000px;
     width: 100%;
     height: 100%;
-    min-height: 600px;
+    min-height: 470px; /* Further reduced height to remove extra space below button */
   }
   
   .flip-container.flipped .flipper {
@@ -1291,6 +1465,7 @@
   .front {
     z-index: 2;
     transform: rotateY(0deg);
+    padding-bottom: 0; /* Remove bottom padding */
   }
   
   .back {
@@ -1407,5 +1582,31 @@
     background-size: 8px 8px;
     height: 100%;
     width: 100%;
+  }
+  
+  /* Glass effect for submit buttons */
+  .submit-btn {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .submit-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.6s;
+  }
+  
+  .submit-btn:hover::after {
+    left: 100%;
+  }
+  
+  /* Remove extra space at the bottom of the form */
+  .form-container > :last-child {
+    margin-bottom: 0;
   }
 </style>
