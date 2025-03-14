@@ -5,8 +5,8 @@
 
   let particles = $state([]);
   let dustParticles = $state([]);
-  const particleCount = 20;
-  const dustParticleCount = 30;
+  const particleCount = 10;
+  const dustParticleCount = 15;
   
   // Soft color palettes for particles
   const softColors = [
