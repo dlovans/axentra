@@ -50,95 +50,91 @@ export async function POST({ request }) {
       subject: 'Tack för din förfrågan | Axentra',
       text: `Hej ${name},\n\nTack för din förfrågan till Axentra. Vi har mottagit ditt meddelande och kommer att kontakta dig inom 24 timmar.\n\nMed vänliga hälsningar,\nAxentra Team`,
       html: `
-        <!DOCTYPE html>
-        <html>
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>Tack för din förfrågan</title>
-          <style>
-            body {
-              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-              line-height: 1.6;
-              color: #333;
-              max-width: 600px;
-              margin: 0 auto;
-              padding: 20px;
-            }
-            .container {
-              background-color: #f8f9fa;
-              border-radius: 8px;
-              padding: 30px;
-              border-top: 4px solid #8B5CF6;
-            }
-            .header {
-              text-align: center;
-              margin-bottom: 30px;
-            }
-            .logo {
-              font-weight: bold;
-              font-size: 24px;
-              color: #8B5CF6;
-              margin-bottom: 10px;
-            }
-            h1 {
-              color: #333;
-              font-size: 22px;
-              margin-bottom: 20px;
-            }
-            .content {
-              background-color: white;
-              padding: 25px;
-              border-radius: 6px;
-              margin-bottom: 25px;
-              border: 1px solid #e9ecef;
-            }
-            .footer {
-              text-align: center;
-              font-size: 14px;
-              color: #6c757d;
-            }
-            .highlight {
-              color: #8B5CF6;
-              font-weight: bold;
-            }
-            .button {
-              display: inline-block;
-              background: linear-gradient(to right, #8B5CF6, #D946EF);
-              color: white;
-              padding: 10px 20px;
-              border-radius: 30px;
-              text-decoration: none;
-              font-weight: bold;
-              margin-top: 15px;
-            }
-          </style>
         </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <div class="logo">Axentra</div>
-            </div>
-            
-            <h1>Tack för din förfrågan, ${name}!</h1>
-            
-            <div class="content">
-              <p>Vi har mottagit ditt meddelande och uppskattar att du kontaktar oss.</p>
-              
-              <p>Vårt team kommer att granska din förfrågan och återkomma till dig <span class="highlight">inom 24 timmar</span>.</p>
-              
-              <p>Om du har brådskande frågor under tiden är du välkommen att svara på detta e-postmeddelande.</p>
-              
-              <center>
-                <a href="https://axentra.agency" class="button">Besök vår webbplats</a>
-              </center>
-            </div>
-            
-            <div class="footer">
-              <p>Med vänliga hälsningar,<br>Axentra Team</p>
-              <p>© ${new Date().getFullYear()} Axentra AB. Alla rättigheter förbehållna.</p>
-            </div>
-          </div>
+        <body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background-color: #0f172a; color: #e2e8f0;">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #0f172a;">
+            <tr>
+              <td align="center" style="padding: 40px 0;">
+                <table border="0" cellpadding="0" cellspacing="0" width="600" style="background-color: #1e293b; border-radius: 12px; border: 1px solid #38bdf8; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                  <!-- Header -->
+                  <tr>
+                    <td align="center" style="padding: 30px 30px 20px 30px;">
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td align="center">
+                            <table border="0" cellpadding="0" cellspacing="0">
+                              <tr>
+                                <td align="center" style="padding-bottom: 20px;">
+                                  <!-- Logo -->
+                                  <img src="https://i.ibb.co/Qj1bBYF/axentra-logo.png" alt="Axentra" width="120" style="display: block;" />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="center" style="color: #38bdf8; font-size: 24px; font-weight: bold;">
+                                  Tack för din förfrågan, ${name}!
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  
+                  <!-- Content -->
+                  <tr>
+                    <td align="center" style="padding: 0 30px 30px 30px;">
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #273549; border-radius: 8px; border: 1px solid #334155;">
+                        <tr>
+                          <td style="padding: 30px; color: #e2e8f0; font-size: 16px; line-height: 24px;">
+                            <p>Vi har mottagit ditt meddelande och uppskattar att du kontaktar oss.</p>
+                            
+                            <p>Vårt team kommer att granska din förfrågan och återkomma till dig <span style="color: #38bdf8; font-weight: bold;">inom 24 timmar</span>.</p>
+                            
+                            <p>Om du har brådskande frågor under tiden är du välkommen att svara på detta e-postmeddelande.</p>
+                            
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                              <tr>
+                                <td align="center" style="padding: 20px 0 0 0;">
+                                  <table border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                      <td align="center" style="border-radius: 30px; background: linear-gradient(to right, #0ea5e9, #0284c7); padding: 12px 24px;">
+                                        <a href="https://axentra.agency" style="color: #ffffff; text-decoration: none; font-weight: bold; display: inline-block; font-size: 16px;">Besök vår webbplats</a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  
+                  <!-- Footer -->
+                  <tr>
+                    <td align="center" style="padding: 0 30px 30px 30px;">
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td align="center" style="padding: 20px 0; border-top: 1px solid #334155; color: #94a3b8; font-size: 14px; line-height: 21px;">
+                            <p>Med vänliga hälsningar,<br/>Axentra Team</p>
+                            <p>© ${new Date().getFullYear()} Axentra AB. Alla rättigheter förbehållna.</p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
         </body>
         </html>
       `
