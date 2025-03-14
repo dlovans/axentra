@@ -5,18 +5,18 @@
   import firebaseInstance from '$lib/firebase/client';
   import { collection, getDocs, updateDoc, doc, query, orderBy, Timestamp } from 'firebase/firestore';
   
-  export let data;
+  const { data } = $props();
   
   let adminId = $page.params.id;
-  let tickets = [];
-  let filteredTickets = [];
-  let loading = true;
-  let error = null;
+  let tickets = $state([]);
+  let filteredTickets = $state([]);
+  let loading = $state(true);
+  let error = $state(null);
   
   // Filters
-  let statusFilter = 'all';
-  let priorityFilter = 'all';
-  let searchQuery = '';
+  let statusFilter = $state('all');
+  let priorityFilter = $state('all');
+  let searchQuery = $state('');
   
   // Priority options
   const priorityOptions = [
@@ -175,11 +175,11 @@
   });
   
   // Watch for filter changes
-  $: {
+  $effect(() => {
     if (tickets.length > 0) {
       applyFilters();
     }
-  }
+  });
   
   async function handleLogout() {
     try {
@@ -199,7 +199,7 @@
       <div class="flex items-center space-x-4">
         <span class="text-sm text-gray-300">Admin: {adminId}</span>
         <button 
-          on:click={handleLogout}
+          onclick={handleLogout}
           class="px-3 py-1 text-sm bg-gray-700 hover:bg-gray-600 rounded-md transition text-gray-200"
         >
           Logout
@@ -340,7 +340,7 @@
                     <div class="flex space-x-2">
                       {#if ticket.status === 'open'}
                         <button 
-                          on:click={() => updateTicketStatus(ticket.id, 'in-progress')}
+                          onclick={() => updateTicketStatus(ticket.id, 'in-progress')}
                           class="text-indigo-400 hover:text-indigo-300"
                         >
                           Start
@@ -349,7 +349,7 @@
                       
                       {#if ticket.status === 'in-progress'}
                         <button 
-                          on:click={() => updateTicketStatus(ticket.id, 'closed')}
+                          onclick={() => updateTicketStatus(ticket.id, 'closed')}
                           class="text-green-400 hover:text-green-300"
                         >
                           Close
@@ -358,7 +358,7 @@
                       
                       {#if ticket.status === 'closed'}
                         <button 
-                          on:click={() => updateTicketStatus(ticket.id, 'open')}
+                          onclick={() => updateTicketStatus(ticket.id, 'open')}
                           class="text-yellow-400 hover:text-yellow-300"
                         >
                           Reopen
@@ -445,6 +445,7 @@
   .line-clamp-1 {
     display: -webkit-box;
     -webkit-line-clamp: 1;
+    line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
