@@ -5,17 +5,17 @@
   import firebaseInstance from '$lib/firebase/client';
   import { doc, getDoc, updateDoc, collection, addDoc, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
   
-  export let data;
+  const { data } = $props();
   
   let ticketId = $page.params.id;
-  let ticket = null;
-  let comments = [];
-  let loading = true;
-  let error = null;
+  let ticket = $state(null);
+  let comments = $state([]);
+  let loading = $state(true);
+  let error = $state(null);
   
   // New comment
-  let newComment = '';
-  let submittingComment = false;
+  let newComment = $state('');
+  let submittingComment = $state(false);
   
   // Priority options
   const priorityOptions = [
@@ -56,7 +56,8 @@
   }
   
   // Submit new comment
-  async function submitComment() {
+  async function submitComment(e) {
+    e.preventDefault();
     if (!newComment.trim()) return;
     
     submittingComment = true;
@@ -211,7 +212,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
       <div class="flex items-center">
         <button 
-          on:click={goBack}
+          onclick={goBack}
           class="mr-4 text-gray-400 hover:text-gray-200"
         >
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -272,7 +273,7 @@
               <div class="flex flex-wrap gap-2">
                 {#if ticket.status === 'open'}
                   <button 
-                    on:click={() => updateTicketStatus('in-progress')}
+                    onclick={() => updateTicketStatus('in-progress')}
                     class="px-3 py-1 text-sm bg-indigo-900 text-indigo-300 hover:bg-indigo-800 rounded-md transition"
                   >
                     Start Working
@@ -281,7 +282,7 @@
                 
                 {#if ticket.status === 'in-progress'}
                   <button 
-                    on:click={() => updateTicketStatus('closed')}
+                    onclick={() => updateTicketStatus('closed')}
                     class="px-3 py-1 text-sm bg-green-900 text-green-300 hover:bg-green-800 rounded-md transition"
                   >
                     Mark as Resolved
@@ -290,7 +291,7 @@
                 
                 {#if ticket.status === 'closed'}
                   <button 
-                    on:click={() => updateTicketStatus('open')}
+                    onclick={() => updateTicketStatus('open')}
                     class="px-3 py-1 text-sm bg-yellow-900 text-yellow-300 hover:bg-yellow-800 rounded-md transition"
                   >
                     Reopen Ticket
@@ -340,7 +341,7 @@
             {#if ticket.status !== 'closed'}
               <div class="border-t border-gray-700 pt-4">
                 <h3 class="text-sm font-medium text-gray-300 mb-2">Add a Response</h3>
-                <form on:submit|preventDefault={submitComment} class="space-y-4">
+                <form onsubmit={submitComment} class="space-y-4">
                   <div>
                     <textarea
                       bind:value={newComment}
