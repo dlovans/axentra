@@ -88,11 +88,28 @@
       }
     ]
   } = $props();
+  
+  // Convert Tailwind color classes to CSS variables
+  const getTailwindColor = (colorClass) => {
+    const colorMap = {
+      // Cyan
+      'cyan-400': 'rgb(34, 211, 238)',
+      
+      // Blue
+      'blue-400': 'rgb(96, 165, 250)',
+      
+      // Teal
+      'teal-400': 'rgb(45, 212, 191)'
+    };
+    
+    return colorMap[colorClass] || colorClass;
+  };
 </script>
 
 <div id="pricing-section" class="relative container mx-auto px-4 py-16">
   <div class="text-center mb-12">
-    <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400 mb-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text mb-4"
+        style="background-image: linear-gradient(to right, {getTailwindColor('cyan-400')}, {getTailwindColor('blue-400')}, {getTailwindColor('teal-400')});">
       {title}
     </h2>
     <p class="text-gray-300 text-lg max-w-3xl mx-auto">
