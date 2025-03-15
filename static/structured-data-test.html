@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Axentra Structured Data Test</title>
+</head>
+<body>
+  <h1>Axentra Structured Data Test Page</h1>
+  <p>This page contains all structured data for testing with Google's Rich Results Test tool.</p>
+  
+  <!-- Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Axentra Startups AB",
+    "url": "https://axentra.agency/",
+    "logo": "https://axentra.agency/favicon-192.png",
+    "image": [
+      "https://axentra.agency/favicon.svg",
+      "https://axentra.agency/favicon-192.png"
+    ],
+    "description": "Axentra hjälper startups att snabbt utveckla marknadsfärdiga MVP-webbappar med flexibla prismodeller och expertis inom webbutveckling.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Stockholm",
+      "addressRegion": "Stockholm",
+      "postalCode": "163 63",
+      "addressCountry": "SE"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "dlovan@axentra.agency"
+    },
+    "sameAs": [
+      "https://github.com/dlovans/axentra",
+      "https://linkedin.com/company/axentra-startups-ab"
+    ],
+    "potentialAction": {
+      "@type": "CommunicateAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://axentra.agency/#contact-section"
+      },
+      "instrument": {
+        "@type": "WebSite",
+        "name": "Axentra | Snabb MVP-utveckling för startups"
+      }
+    },
+    "offers": {
+      "@type": "Offer",
+      "description": "MVP-utveckling för startups",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Sweden"
+      }
+    }
+  }
+  </script>
+  
+  <!-- Website Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://axentra.agency/",
+    "name": "Axentra | Snabb MVP-utveckling för startups",
+    "description": "Axentra hjälper startups att snabbt utveckla marknadsfärdiga MVP-webbappar med flexibla prismodeller.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://axentra.agency/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  
+  <!-- Local Business Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Axentra Startups AB",
+    "image": "https://axentra.agency/favicon-192.png",
+    "@id": "https://axentra.agency",
+    "url": "https://axentra.agency",
+    "telephone": "",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "",
+      "addressLocality": "Stockholm",
+      "postalCode": "163 63",
+      "addressCountry": "SE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 59.3293,
+      "longitude": 18.0686
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    "sameAs": [
+      "https://github.com/dlovans/axentra",
+      "https://linkedin.com/company/axentra-startups-ab"
+    ]
+  }
+  </script>
+  
+  <!-- Breadcrumb Schema for Homepage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Hem",
+      "item": "https://axentra.agency/"
+    }]
+  }
+  </script>
+</body>
+</html> 
