@@ -1,0 +1,23 @@
+# Security Policy for Axentra Startups AB
+# See https://securitytxt.org/ for more information (RFC 9116)
+
+# Contact information
+Contact: mailto:dlovan@axentra.agency
+
+# Encryption key (optional)
+# Encryption: https://axentra.agency/pgp-key.txt
+
+# Security policy
+Policy: https://axentra.agency/policies/security
+
+# Preferred languages
+Preferred-Languages: sv, en
+
+# Canonical URL
+Canonical: https://axentra.agency/.well-known/security.txt
+
+# Expiration date (YYYY-MM-DD)
+Expires: 2026-03-15T00:00:00.000Z
+
+# Acknowledgments
+Acknowledgments: https://axentra.agency/security-hall-of-fame 
