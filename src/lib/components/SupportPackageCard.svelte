@@ -33,7 +33,7 @@
           </div>
           <div>
             <h4 class="text-lg font-medium text-white mb-1">Teknisk Support</h4>
-            <p class="text-gray-400 text-sm">Obegränsad support via vår Ticketing Dashboard där du kan skapa och följa ärenden. Svar inom 24 timmar. Hjälp med tekniska frågor, felsökning och användning av din produkt.</p>
+            <p class="text-gray-400 text-sm">Obegränsad support via vår supportpanel där du kan skapa och följa ärenden. Svar inom 24 timmar. Hjälp med tekniska frågor, felsökning och användning av din produkt.</p>
           </div>
         </div>
         
