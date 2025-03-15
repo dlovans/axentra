@@ -34,20 +34,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
       <!-- Company Info -->
       <div>
-        <div class="flex items-center space-x-3 mb-6">
-          <div class="logo-container h-10 w-10 rounded-full bg-gray-800/35 flex items-center justify-center border border-cyan-500/40">
-            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5L12 3Z" stroke="url(#footerLogoGradient)" stroke-width="1.5" fill="none" />
-              <path d="M12 3V10.5M12 21V15M20 7.5L15 10.5M4 7.5L9 10.5M12 10.5L17 13.5L12 15L7 13.5L12 10.5Z" stroke="url(#footerLogoGradient)" stroke-width="1.5" stroke-linecap="round" />
-              <defs>
-                <linearGradient id="footerLogoGradient" x1="4" y1="3" x2="20" y2="21" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#22d3ee" />
-                  <stop offset="50%" stop-color="#0ea5e9" />
-                  <stop offset="100%" stop-color="#2dd4bf" />
-                </linearGradient>
-              </defs>
-          </svg>
-        </div>
+        <div class="flex items-center mb-6">
           <h3 class="text-xl font-bold text-white">
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">Axentra</span>
           </h3>
@@ -169,7 +156,10 @@
     
     <!-- Copyright -->
     <div class="text-center text-gray-400 text-sm">
-      <p>&copy; {currentYear} Axentra. Alla rättigheter förbehållna.</p>
+      <p>&copy; {currentYear} Axentra Startups AB. Alla rättigheter förbehållna.</p>
+      <div class="mt-2 flex justify-center">
+        <a href="/policies" class="text-gray-400 hover:text-cyan-400 transition-colors">Policyer och Villkor</a>
+      </div>
     </div>
   </div>
 </div>
