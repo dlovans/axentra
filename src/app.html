@@ -13,18 +13,25 @@
 		<link rel="apple-touch-icon" href="%sveltekit.assets%/favicon-128.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="%sveltekit.assets%/favicon-192.png" />
 		
+		<!-- Performance optimization -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="dns-prefetch" href="https://www.google-analytics.com" />
+		<meta http-equiv="x-dns-prefetch-control" content="on" />
+		
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
 		<!-- Primary Meta Tags -->
-		<meta name="description" content="Axentra hjälper startups att snabbt utveckla MVP-webbappar med flexibla prismodeller. Snabb MVP-utveckling för innovativa startups." />
-		<meta name="keywords" content="MVP utveckling, startup utveckling, webbapp, mjukvaruutveckling, Stockholm, teknisk partner" />
-		<meta name="author" content="Axentra AB" />
+		<meta name="title" content="Axentra | Snabb MVP-utveckling för innovativa startups" />
+		<meta name="description" content="Axentra hjälper startups att snabbt utveckla marknadsfärdiga MVP-webbappar med flexibla prismodeller. Expertis inom webbutveckling och startup-fokuserade lösningar." />
+		<meta name="keywords" content="MVP utveckling, startup utveckling, webbapp, mjukvaruutveckling, Stockholm, teknisk partner, snabb utveckling, marknadsfärdig MVP" />
+		<meta name="author" content="Axentra Startups AB" />
 		
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://axentra.agency/" />
-		<meta property="og:title" content="Axentra | Snabb MVP-utveckling för startups" />
-		<meta property="og:description" content="Vi hjälper innovativa startups att lansera sina MVP-webbappar på rekordtid. Flexibla prismodeller och strategiskt partnerskap." />
+		<meta property="og:title" content="Axentra | Snabb MVP-utveckling för innovativa startups" />
+		<meta property="og:description" content="Vi hjälper innovativa startups att lansera sina MVP-webbappar på rekordtid. Flexibla prismodeller och strategiskt partnerskap för din digitala resa." />
 		<meta property="og:image" content="https://axentra.agency/og-image.svg" />
 		<meta property="og:image:type" content="image/svg+xml" />
 		<meta property="og:image:width" content="1200" />
@@ -35,29 +42,40 @@
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:url" content="https://axentra.agency/" />
-		<meta name="twitter:title" content="Axentra | Snabb MVP-utveckling för startups" />
-		<meta name="twitter:description" content="Vi hjälper innovativa startups att lansera sina MVP-webbappar på rekordtid. Flexibla prismodeller och strategiskt partnerskap." />
+		<meta name="twitter:title" content="Axentra | Snabb MVP-utveckling för innovativa startups" />
+		<meta name="twitter:description" content="Vi hjälper innovativa startups att lansera sina MVP-webbappar på rekordtid. Flexibla prismodeller och strategiskt partnerskap för din digitala resa." />
 		<meta name="twitter:image" content="https://axentra.agency/twitter-image.svg" />
 		<meta name="twitter:image:type" content="image/svg+xml" />
 		
 		<!-- Additional SEO Meta -->
-		<meta name="robots" content="index, follow" />
-		<meta name="theme-color" content="#8B5CF6" />
+		<meta name="robots" content="index, follow, max-image-preview:large" />
+		<meta name="theme-color" content="#0ea5e9" />
 		<link rel="canonical" href="https://axentra.agency/" />
+		<meta name="geo.region" content="SE-AB" />
+		<meta name="geo.placename" content="Stockholm" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="application-name" content="Axentra" />
+		<meta name="apple-mobile-web-app-title" content="Axentra" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		
+		<!-- Core Web Vitals & Page Experience optimization -->
+		<meta name="color-scheme" content="dark light" />
+		<meta name="monetization" content="$ilp.uphold.com/YOUR_PAYMENT_POINTER" />
 		
 		<!-- Structured Data -->
 		<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
 			"@type": "Organization",
-			"name": "Axentra AB",
+			"name": "Axentra Startups AB",
 			"url": "https://axentra.agency/",
 			"logo": "https://axentra.agency/favicon-192.png",
 			"image": [
 				"https://axentra.agency/favicon.svg",
 				"https://axentra.agency/favicon-192.png"
 			],
-			"description": "Axentra hjälper startups att snabbt utveckla MVP-webbappar med flexibla prismodeller.",
+			"description": "Axentra hjälper startups att snabbt utveckla marknadsfärdiga MVP-webbappar med flexibla prismodeller och expertis inom webbutveckling.",
 			"address": {
 				"@type": "PostalAddress",
 				"addressLocality": "Stockholm",
@@ -71,20 +89,100 @@
 				"email": "dlovan@axentra.agency"
 			},
 			"sameAs": [
-				"https://github.com/axentra",
-				"https://linkedin.com/company/axentra"
+				"https://github.com/dlovans/axentra",
+				"https://linkedin.com/company/axentra-startups-ab"
 			],
 			"potentialAction": {
 				"@type": "CommunicateAction",
 				"target": {
 					"@type": "EntryPoint",
-					"urlTemplate": "https://axentra.agency/#contact"
+					"urlTemplate": "https://axentra.agency/#contact-section"
 				},
 				"instrument": {
 					"@type": "WebSite",
 					"name": "Axentra | Snabb MVP-utveckling för startups"
 				}
+			},
+			"offers": {
+				"@type": "Offer",
+				"description": "MVP-utveckling för startups",
+				"areaServed": {
+					"@type": "Country",
+					"name": "Sweden"
+				}
 			}
+		}
+		</script>
+		
+		<!-- Website Schema -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"url": "https://axentra.agency/",
+			"name": "Axentra | Snabb MVP-utveckling för startups",
+			"description": "Axentra hjälper startups att snabbt utveckla marknadsfärdiga MVP-webbappar med flexibla prismodeller.",
+			"potentialAction": {
+				"@type": "SearchAction",
+				"target": "https://axentra.agency/search?q={search_term_string}",
+				"query-input": "required name=search_term_string"
+			}
+		}
+		</script>
+		
+		<!-- Local Business Schema -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "LocalBusiness",
+			"name": "Axentra Startups AB",
+			"image": "https://axentra.agency/favicon-192.png",
+			"@id": "https://axentra.agency",
+			"url": "https://axentra.agency",
+			"telephone": "",
+			"priceRange": "$$",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "",
+				"addressLocality": "Stockholm",
+				"postalCode": "163 63",
+				"addressCountry": "SE"
+			},
+			"geo": {
+				"@type": "GeoCoordinates",
+				"latitude": 59.3293,
+				"longitude": 18.0686
+			},
+			"openingHoursSpecification": {
+				"@type": "OpeningHoursSpecification",
+				"dayOfWeek": [
+					"Monday",
+					"Tuesday",
+					"Wednesday",
+					"Thursday",
+					"Friday"
+				],
+				"opens": "09:00",
+				"closes": "17:00"
+			},
+			"sameAs": [
+				"https://github.com/dlovans/axentra",
+				"https://linkedin.com/company/axentra-startups-ab"
+			]
+		}
+		</script>
+		
+		<!-- Breadcrumb Schema for Homepage -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "BreadcrumbList",
+			"itemListElement": [{
+				"@type": "ListItem",
+				"position": 1,
+				"name": "Hem",
+				"item": "https://axentra.agency/"
+			}]
 		}
 		</script>
 		
