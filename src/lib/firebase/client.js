@@ -22,8 +22,10 @@ const firebaseInstance = {
   auth: undefined
 }
 
-const app = initializeApp(firebaseConfig);
-firebaseInstance.db = getFirestore(app);
-firebaseInstance.auth = getAuth(app);
+if (browser) {
+  const app = initializeApp(firebaseConfig);
+  firebaseInstance.db = getFirestore(app);
+  firebaseInstance.auth = getAuth(app);
+}
 
 export default firebaseInstance;
