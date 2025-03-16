@@ -282,7 +282,6 @@
       error={error}
       priorityOptions={priorityOptions}
       statusOptions={statusOptions}
-      onUpdateStatus={updateTicketStatus}
       adminId={adminId}
     />
   </main>

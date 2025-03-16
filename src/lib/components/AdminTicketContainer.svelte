@@ -2,7 +2,7 @@
   // AdminTicketContainer.svelte - Component for displaying a ticket in the admin dashboard
   
   // Props
-  const { ticket, priorityOptions, statusOptions, onUpdateStatus, adminId } = $props();
+  const { ticket, priorityOptions, statusOptions, adminId } = $props();
   
   // Get priority color class
   function getPriorityColor(priority) {
@@ -55,35 +55,5 @@
     >
       Öppna
     </a>
-  </td>
-  <td class="px-2 py-4 text-sm font-medium text-right">
-    <div class="flex flex-col sm:flex-row justify-end sm:space-x-2 space-y-2 sm:space-y-0">
-      {#if ticket.status === 'open'}
-        <button 
-          onclick={() => onUpdateStatus(ticket.id, 'in-progress')}
-          class="text-indigo-400 hover:text-indigo-300"
-        >
-          Starta
-        </button>
-      {/if}
-      
-      {#if ticket.status === 'in-progress'}
-        <button 
-          onclick={() => onUpdateStatus(ticket.id, 'closed')}
-          class="text-green-400 hover:text-green-300"
-        >
-          Stäng
-        </button>
-      {/if}
-      
-      {#if ticket.status === 'closed'}
-        <button 
-          onclick={() => onUpdateStatus(ticket.id, 'open')}
-          class="text-yellow-400 hover:text-yellow-300"
-        >
-          Återöppna
-        </button>
-      {/if}
-    </div>
   </td>
 </tr> 

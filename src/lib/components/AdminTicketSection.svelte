@@ -52,14 +52,11 @@
               <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider w-[10%]">
                 Status
               </th>
-              <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider w-[15%]">
+              <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider w-[20%]">
                 Datum
               </th>
-              <th scope="col" class="px-2 py-3 text-center text-xs font-medium text-gray-300 uppercase tracking-wider w-[3%]">
+              <th scope="col" class="px-2 py-3 text-center text-xs font-medium text-gray-300 uppercase tracking-wider w-[5%]">
                 Öppna
-              </th>
-              <th scope="col" class="px-2 py-3 text-right text-xs font-medium text-gray-300 uppercase tracking-wider w-[10%]">
-                Åtgärder
               </th>
             </tr>
           </thead>
