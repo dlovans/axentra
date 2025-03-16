@@ -1,15 +1,15 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   import { page } from '$app/stores';
   import { logout } from '$lib/firebase/auth';
-  import firebaseInstance from '$lib/firebase/client';
-  import { collection, addDoc, getDocs, query, where, orderBy, Timestamp } from 'firebase/firestore';
+  import { createTicket } from '$lib/firebase/ticket';
   import TicketCard from '$lib/components/TicketCard.svelte';
   
   const { data } = $props();
   
   let userId = $page.params.id;
-  let tickets = $state([]);
+  let activeTickets = $state([]);
+  let closedTickets = $state([]);
   let loading = $state(true);
   let error = $state(null);
   
@@ -23,20 +23,9 @@
   let descriptionError = $state('');
   
   // User data
-  let userData = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    company: 'Acme AB',
-    plan: 'Företag',
-    joinDate: new Date(Date.now() - 7776000000) // 90 days ago
-  };
-  
-  // Dashboard stats
-  let stats = {
-    openTickets: 2,
-    resolvedTickets: 1,
-    lastLogin: new Date(Date.now() - 172800000) // 2 days ago
-  };
+  let userData = data.userData;
+  let userName = userData?.name || 'Unknown User';
+  let companyName = userData?.companyName || 'Unknown Company';
   
   // Priority options
   const priorityOptions = [
@@ -98,83 +87,57 @@
     submitting = true;
     
     try {
-      // This is just UI, so we'll simulate adding a ticket
-      const newTicket = {
-        id: `ticket-${Date.now()}`,
-        title,
-        description,
-        priority,
-        status: 'open',
-        createdAt: Timestamp.now(),
-        userId
-      };
+      const result = await createTicket(title, description, priority, 'open', userId, userName, companyName, userData.email);
       
-      // In a real app, you would add to Firestore:
-      // await addDoc(collection(firebaseInstance.db, 'tickets'), newTicket);
-      
-      // Add to local state for demo
-      tickets = [newTicket, ...tickets];
-      
-      // Reset form
-      title = '';
-      description = '';
-      priority = 'medium';
-      submitSuccess = true;
-      
-      // Hide success message after 3 seconds
-      setTimeout(() => {
-        submitSuccess = false;
-      }, 3000);
-      
+      if (result.status) {
+        // Reset form
+        title = '';
+        description = '';
+        priority = 'medium';
+        submitSuccess = true;
+        
+        // Hide success message after 3 seconds
+        setTimeout(() => {
+          submitSuccess = false;
+        }, 3000);
+      } else {
+        error = result.message;
+      }
     } catch (err) {
       console.error('Error submitting ticket:', err);
+      error = err.message;
     } finally {
       submitting = false;
     }
   }
   
-  onMount(async () => {
-    // In a real app, you would fetch tickets from Firestore:
-    // const q = query(
-    //   collection(firebaseInstance.db, 'tickets'),
-    //   where('userId', '==', userId),
-    //   orderBy('createdAt', 'desc')
-    // );
-    // const querySnapshot = await getDocs(q);
-    // tickets = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    
-    // For demo, create some sample tickets
-    tickets = [
-      {
-        id: 'ticket-1',
-        title: 'Webbplatsen laddar långsamt',
-        description: 'Min webbplats tar mer än 10 sekunder att ladda i alla webbläsare.',
-        priority: 'high',
-        status: 'open',
-        createdAt: new Date(Date.now() - 86400000), // 1 day ago
-        userId
-      },
-      {
-        id: 'ticket-2',
-        title: 'Kontaktformuläret fungerar inte',
-        description: 'Kunder rapporterar att kontaktformuläret inte skickar e-post.',
-        priority: 'critical',
-        status: 'in-progress',
-        createdAt: new Date(Date.now() - 172800000), // 2 days ago
-        userId
-      },
-      {
-        id: 'ticket-3',
-        title: 'Uppdatera logotypen på hemsidan',
-        description: 'Behöver uppdatera vår företagslogotyp på hemsidan med den nya designen.',
-        priority: 'low',
-        status: 'closed',
-        createdAt: new Date(Date.now() - 432000000), // 5 days ago
-        userId
-      }
-    ];
-    
-    loading = false;
+  // Set up ticket listeners
+  let unsubscribeActive;
+  let unsubscribeClosed;
+  
+  onMount(() => {
+    loading = true;
+    unsubscribeActive = data.activeTickets.subscribe((updatedTickets) => {
+      activeTickets = updatedTickets;
+      loading = false;
+    });
+
+    unsubscribeClosed = data.closedTickets.subscribe((updatedTickets) => {
+      closedTickets = updatedTickets;
+      loading = false;
+    });
+  });
+  
+  onDestroy(() => {
+    if (unsubscribeActive) unsubscribeActive();
+    if (unsubscribeClosed) unsubscribeClosed();
+  });
+  
+  // Compute stats from both active and closed tickets
+  const stats = $derived({
+    openTickets: activeTickets.length,
+    resolvedTickets: closedTickets.length,
+    lastLogin: new Date(Date.now() - 172800000) // 2 days ago
   });
   
   async function handleLogout() {
@@ -207,7 +170,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-bold text-white">Supportpanel <span class="text-indigo-400">Axentra</span></h1>
       <div class="flex items-center space-x-4">
-        <span class="text-sm text-gray-300">Välkommen, {userData.name}</span>
+        <span class="text-sm text-gray-300">Välkommen, {data.userData.name}</span>
         <button 
           onclick={handleLogout}
           class="px-3 py-1 text-sm bg-gray-700 hover:bg-gray-600 rounded-md transition text-gray-200"
@@ -219,6 +182,39 @@
   </header>
   
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Stats Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <!-- Open Tickets -->
+      <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-green-500/10">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-medium text-white">Öppna ärenden</h3>
+            <p class="text-2xl font-bold text-green-400">{stats.openTickets}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Emergency Contact -->
+      <div class="bg-gray-800 rounded-lg p-6 border border-red-500">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-red-500/10">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500 animate-heartbeat" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-medium text-white">Akutärende</h3>
+            <p class="text-sm text-gray-300 mt-1">Ring: <a href="tel:+46728652474" class="text-red-400 hover:text-red-300">072-865 24 74</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Main Content -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
       <!-- Left Column - Ticket Creation Form -->
@@ -294,109 +290,75 @@
         </div>
       </div>
       
-      <!-- Right Column - Tickets List -->
+      <!-- Right Column - Tickets Lists -->
       <div class="lg:col-span-2">
-        <div class="bg-gray-800 shadow-lg rounded-lg p-6 border border-gray-700 h-full flex flex-col">
-          <!-- Ticket Stats -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 pb-6 border-b border-gray-700">
-            <div class="flex items-center bg-gray-800/50 p-3 rounded-lg border border-gray-700/50">
-              <div class="p-2.5 rounded-full bg-blue-500/20 text-blue-400 mr-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <div class="flex-1">
-                <p class="text-xs text-gray-400 mb-0.5">Öppna ärenden</p>
-                <div class="flex items-center justify-between">
-                  <p class="text-xl font-semibold text-white">{stats.openTickets}</p>
-                  <div class="h-8 w-12">
-                    <div class="flex items-end h-full space-x-0.5">
-                      <div class="bg-blue-500/30 w-1 h-3 rounded-t"></div>
-                      <div class="bg-blue-500/30 w-1 h-5 rounded-t"></div>
-                      <div class="bg-blue-500/30 w-1 h-2 rounded-t"></div>
-                      <div class="bg-blue-500/30 w-1 h-4 rounded-t"></div>
-                      <div class="bg-blue-500/50 w-1 h-6 rounded-t"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="bg-gray-800 shadow-lg rounded-lg p-6 border border-gray-700 h-full flex flex-col space-y-6">
+          <!-- Active Tickets Section -->
+          <div>
+            <h2 class="text-lg font-medium text-white mb-4 flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Aktiva ärenden
+            </h2>
             
-            <div class="flex items-center bg-gray-800/50 p-3 rounded-lg border border-gray-700/50">
-              <div class="p-2.5 rounded-full bg-green-500/20 text-green-400 mr-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <div class="flex-1">
-                <p class="text-xs text-gray-400 mb-0.5">Lösta ärenden</p>
-                <div class="flex items-center justify-between">
-                  <p class="text-xl font-semibold text-white">{stats.resolvedTickets}</p>
-                  <div class="h-8 w-8">
-                    <svg viewBox="0 0 36 36" class="h-8 w-8">
-                      <path class="stroke-current text-green-500/20" stroke-width="3" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                      <path class="stroke-current text-green-400" stroke-width="3" fill="none" stroke-dasharray="75, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                      <text x="18" y="20.5" class="text-xs text-green-400 fill-current font-semibold text-center" dominant-baseline="middle" text-anchor="middle">75%</text>
-                    </svg>
-                  </div>
+            <div class="ticket-container">
+              {#if loading}
+                <div class="py-8 text-center text-gray-400">
+                  <svg class="animate-spin h-8 w-8 mx-auto text-indigo-400 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <p>Laddar ärenden...</p>
                 </div>
-              </div>
-            </div>
-            
-            <div class="flex items-center bg-red-900/20 p-3 rounded-lg border border-red-700/30 hover:bg-red-900/30 transition-colors">
-              <div class="p-2.5 rounded-full bg-red-500/20 text-red-400 mr-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </div>
-              <div class="flex-1">
-                <div class="flex items-center whitespace-nowrap">
-                  <p class="text-xs text-red-300 mb-0.5 truncate">Akutärenden</p>
-                  <span class="relative flex h-2 w-2 ml-1 flex-shrink-0">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                  </span>
+              {:else if activeTickets.length === 0}
+                <div class="py-8 text-center text-gray-400">
+                  <p>Inga aktiva ärenden</p>
                 </div>
-                <div class="flex items-center justify-between">
-                  <a href="tel:+46728652474" class="text-xl font-semibold text-white whitespace-nowrap overflow-hidden text-ellipsis hover:text-red-300 transition-colors">+46728652474</a>
+              {:else}
+                <div class="overflow-y-auto pr-2">
+                  <ul class="space-y-2">
+                    {#each activeTickets as ticket}
+                      <TicketCard {ticket} {priorityOptions} {userId} />
+                    {/each}
+                  </ul>
                 </div>
-              </div>
+              {/if}
             </div>
           </div>
-          
-          <h2 class="text-lg font-medium text-white mb-4 flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
-            Dina supportärenden
-          </h2>
-          
-          <div class="ticket-container">
-            {#if loading}
-              <div class="py-8 text-center text-gray-400">
-                <svg class="animate-spin h-8 w-8 mx-auto text-indigo-400 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                <p>Laddar ärenden...</p>
-              </div>
-            {:else if error}
-              <div class="py-8 text-center text-gray-400">
-                <p class="text-red-400">Fel vid laddning av ärenden: {error}</p>
-              </div>
-            {:else if tickets.length === 0}
-              <div class="py-8 text-center text-gray-400">
-                <p>Du har inte skapat några ärenden ännu.</p>
-              </div>
-            {:else}
-              <div class="overflow-y-auto pr-2">
-                <ul class="space-y-2">
-                  {#each tickets as ticket}
-                    <TicketCard {ticket} {priorityOptions} />
-                  {/each}
-                </ul>
-              </div>
-            {/if}
+
+          <!-- Closed Tickets Section -->
+          <div>
+            <h2 class="text-lg font-medium text-white mb-4 flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Avslutade ärenden
+            </h2>
+            
+            <div class="ticket-container">
+              {#if loading}
+                <div class="py-8 text-center text-gray-400">
+                  <svg class="animate-spin h-8 w-8 mx-auto text-indigo-400 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <p>Laddar ärenden...</p>
+                </div>
+              {:else if closedTickets.length === 0}
+                <div class="py-8 text-center text-gray-400">
+                  <p>Inga avslutade ärenden</p>
+                </div>
+              {:else}
+                <div class="overflow-y-auto pr-2">
+                  <ul class="space-y-2">
+                    {#each closedTickets as ticket}
+                      <TicketCard {ticket} {priorityOptions} {userId} />
+                    {/each}
+                  </ul>
+                </div>
+              {/if}
+            </div>
           </div>
         </div>
       </div>
@@ -406,30 +368,25 @@
     <div class="bg-gray-800 shadow-lg rounded-lg p-6 border border-gray-700">
       <h2 class="text-lg font-medium text-white mb-4">Kontoinformation</h2>
       
-      <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div class="flex flex-col">
           <span class="text-sm text-gray-400 mb-1">Namn</span>
-          <span class="text-sm text-white">{userData.name}</span>
+          <span class="text-sm text-white">{data.userData.name}</span>
         </div>
         
         <div class="flex flex-col">
           <span class="text-sm text-gray-400 mb-1">E-post</span>
-          <span class="text-sm text-white">{userData.email}</span>
+          <span class="text-sm text-white">{data.userData.email}</span>
         </div>
         
         <div class="flex flex-col">
           <span class="text-sm text-gray-400 mb-1">Företag</span>
-          <span class="text-sm text-white">{userData.company}</span>
-        </div>
-        
-        <div class="flex flex-col">
-          <span class="text-sm text-gray-400 mb-1">Abonnemang</span>
-          <span class="text-sm px-2 py-1 bg-indigo-900 text-indigo-200 rounded-full text-xs font-medium inline-block w-fit">{userData.plan}</span>
+          <span class="text-sm text-white">{data.userData.companyName}</span>
         </div>
         
         <div class="flex flex-col">
           <span class="text-sm text-gray-400 mb-1">Medlem sedan</span>
-          <span class="text-sm text-white">{formatDate(userData.joinDate)}</span>
+          <span class="text-sm text-white">{formatDate(data.userData.joinDate)}</span>
         </div>
       </div>
     </div>
@@ -456,9 +413,9 @@
     to { opacity: 1; transform: translateY(0); }
   }
   
-  /* Fixed height ticket container */
+  /* Update the ticket container height to be smaller since we now have two containers */
   .ticket-container {
-    height: 380px; /* Further decreased height to make scrollability more obvious */
+    height: 300px; /* Reduced height to accommodate both containers */
     display: flex;
     flex-direction: column;
     flex-grow: 1;
