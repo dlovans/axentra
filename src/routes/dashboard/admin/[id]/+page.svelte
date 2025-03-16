@@ -1,9 +1,12 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   import { page } from '$app/stores';
   import { logout } from '$lib/firebase/auth';
   import firebaseInstance from '$lib/firebase/client';
   import { collection, getDocs, updateDoc, doc, query, orderBy, Timestamp } from 'firebase/firestore';
+  import AdminTicketContainer from '$lib/components/AdminTicketContainer.svelte';
+  import AdminTicketSection from '$lib/components/AdminTicketSection.svelte';
+  import AdminUserSection from '$lib/components/AdminUserSection.svelte';
   
   const { data } = $props();
   
@@ -13,6 +16,9 @@
   let loading = $state(true);
   let error = $state(null);
   
+  // Subscription cleanup
+  let unsubscribeTickets;
+  
   // Filters
   let statusFilter = $state('all');
   let priorityFilter = $state('all');
@@ -20,17 +26,17 @@
   
   // Priority options
   const priorityOptions = [
-    { value: 'low', label: 'Low', color: 'bg-blue-500 text-white' },
-    { value: 'medium', label: 'Medium', color: 'bg-yellow-500 text-white' },
-    { value: 'high', label: 'High', color: 'bg-orange-500 text-white' },
-    { value: 'critical', label: 'Critical', color: 'bg-red-500 text-white' }
+    { value: 'low', label: 'Låg', color: 'bg-blue-500 text-white' },
+    { value: 'medium', label: 'Medel', color: 'bg-yellow-500 text-white' },
+    { value: 'high', label: 'Hög', color: 'bg-orange-500 text-white' },
+    { value: 'critical', label: 'Kritisk', color: 'bg-red-500 text-white' }
   ];
   
   // Status options
   const statusOptions = [
-    { value: 'open', label: 'Open', color: 'bg-green-600 text-white' },
-    { value: 'in-progress', label: 'In Progress', color: 'bg-purple-600 text-white' },
-    { value: 'closed', label: 'Closed', color: 'bg-gray-600 text-white' }
+    { value: 'open', label: 'Öppen', color: 'bg-green-600 text-white' },
+    { value: 'in-progress', label: 'Pågående', color: 'bg-purple-600 text-white' },
+    { value: 'closed', label: 'Stängd', color: 'bg-gray-600 text-white' }
   ];
   
   // Get priority color class
@@ -47,7 +53,7 @@
   function formatDate(timestamp) {
     if (!timestamp) return '';
     const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
-    return date.toLocaleDateString('en-US', { 
+    return date.toLocaleDateString('sv-SE', { 
       year: 'numeric', 
       month: 'short', 
       day: 'numeric',
@@ -82,96 +88,34 @@
   // Update ticket status
   async function updateTicketStatus(ticketId, newStatus) {
     try {
-      // In a real app, you would update Firestore:
-      // await updateDoc(doc(firebaseInstance.db, 'tickets', ticketId), {
-      //   status: newStatus,
-      //   updatedAt: Timestamp.now()
-      // });
-      
-      // Update local state for demo
-      tickets = tickets.map(ticket => {
-        if (ticket.id === ticketId) {
-          return { ...ticket, status: newStatus };
-        }
-        return ticket;
+      // Update Firestore
+      await updateDoc(doc(firebaseInstance.db, 'tickets', ticketId), {
+        status: newStatus,
+        updatedAt: Timestamp.now()
       });
       
-      // Re-apply filters
-      applyFilters();
+      // The listener will automatically update the UI
       
     } catch (err) {
       console.error('Error updating ticket status:', err);
-      error = 'Failed to update ticket status. Please try again.';
+      error = 'Det gick inte att uppdatera ärendets status. Försök igen.';
     }
   }
   
-  onMount(async () => {
-    // In a real app, you would fetch all tickets from Firestore:
-    // const q = query(
-    //   collection(firebaseInstance.db, 'tickets'),
-    //   orderBy('createdAt', 'desc')
-    // );
-    // const querySnapshot = await getDocs(q);
-    // tickets = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    
-    // For demo, create some sample tickets
-    tickets = [
-      {
-        id: 'ticket-1',
-        title: 'Website loading slowly',
-        description: 'My website is taking more than 10 seconds to load on all browsers.',
-        priority: 'high',
-        status: 'open',
-        createdAt: new Date(Date.now() - 86400000), // 1 day ago
-        userId: 'user123',
-        userEmail: 'user@example.com'
-      },
-      {
-        id: 'ticket-2',
-        title: 'Contact form not working',
-        description: 'Customers report that the contact form is not sending emails.',
-        priority: 'critical',
-        status: 'in-progress',
-        createdAt: new Date(Date.now() - 172800000), // 2 days ago
-        userId: 'user456',
-        userEmail: 'client@example.com'
-      },
-      {
-        id: 'ticket-3',
-        title: 'Update logo on homepage',
-        description: 'Need to update our company logo on the homepage with the new design.',
-        priority: 'low',
-        status: 'closed',
-        createdAt: new Date(Date.now() - 432000000), // 5 days ago
-        userId: 'user789',
-        userEmail: 'business@example.com'
-      },
-      {
-        id: 'ticket-4',
-        title: 'SSL certificate expired',
-        description: 'Our SSL certificate has expired and visitors are seeing security warnings.',
-        priority: 'critical',
-        status: 'open',
-        createdAt: new Date(Date.now() - 43200000), // 12 hours ago
-        userId: 'user123',
-        userEmail: 'user@example.com'
-      },
-      {
-        id: 'ticket-5',
-        title: 'Mobile menu not working',
-        description: 'The hamburger menu on mobile devices is not opening when clicked.',
-        priority: 'medium',
-        status: 'open',
-        createdAt: new Date(Date.now() - 129600000), // 1.5 days ago
-        userId: 'user456',
-        userEmail: 'client@example.com'
-      }
-    ];
-    
-    // Initialize filtered tickets
-    filteredTickets = [...tickets];
-    
-    loading = false;
+  onMount(() => {
+    // Subscribe to tickets
+    unsubscribeTickets = data.tickets.subscribe((loadedTickets) => {
+      tickets = loadedTickets;
+      filteredTickets = [...loadedTickets];
+      loading = false;
+    });
+  });
+  
+  // Clean up subscriptions when component is destroyed
+  onDestroy(() => {
+    if (unsubscribeTickets) {
+      unsubscribeTickets();
+    }
   });
   
   // Watch for filter changes
@@ -195,36 +139,39 @@
   <!-- Header -->
   <header class="bg-gray-800 shadow-lg border-b border-gray-700">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-white">Admin Dashboard</h1>
+      <h1 class="text-2xl font-bold text-white">Administratörspanel</h1>
       <div class="flex items-center space-x-4">
-        <span class="text-sm text-gray-300">Admin: {adminId}</span>
+        <span class="text-sm text-gray-300">Admin: {data.user?.name ?? "Admin"}</span>
         <button 
           onclick={handleLogout}
           class="px-3 py-1 text-sm bg-gray-700 hover:bg-gray-600 rounded-md transition text-gray-200"
         >
-          Logout
+          Logga ut
         </button>
       </div>
     </div>
   </header>
   
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- User Management Section -->
+    <AdminUserSection adminId={adminId} users={data.users} />
+    
     <!-- Filters -->
     <div class="bg-gray-800 shadow-lg rounded-lg p-6 mb-8 border border-gray-700">
-      <h2 class="text-lg font-medium text-white mb-4">Filter Tickets</h2>
+      <h2 class="text-lg font-medium text-white mb-4">Filtrera ärenden</h2>
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- Search -->
         <div>
           <label for="search" class="block text-sm font-medium text-gray-300 mb-1">
-            Search
+            Sök
           </label>
           <input
             type="text"
             id="search"
             bind:value={searchQuery}
             class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-white"
-            placeholder="Search by title or description"
+            placeholder="Sök på titel eller beskrivning"
           />
         </div>
         
@@ -238,7 +185,7 @@
             bind:value={statusFilter}
             class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-white"
           >
-            <option value="all">All Statuses</option>
+            <option value="all">Alla statusar</option>
             {#each statusOptions as option}
               <option value={option.value}>{option.label}</option>
             {/each}
@@ -248,14 +195,14 @@
         <!-- Priority Filter -->
         <div>
           <label for="priority" class="block text-sm font-medium text-gray-300 mb-1">
-            Priority
+            Prioritet
           </label>
           <select
             id="priority"
             bind:value={priorityFilter}
             class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-white"
           >
-            <option value="all">All Priorities</option>
+            <option value="all">Alla prioriteter</option>
             {#each priorityOptions as option}
               <option value={option.value}>{option.label}</option>
             {/each}
@@ -264,118 +211,8 @@
       </div>
     </div>
     
-    <!-- Tickets Table -->
-    <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden border border-gray-700">
-      <div class="px-6 py-4 border-b border-gray-700">
-        <h2 class="text-lg font-medium text-white">All Support Tickets</h2>
-      </div>
-      
-      {#if loading}
-        <div class="py-8 text-center text-gray-400">
-          <svg class="animate-spin h-8 w-8 mx-auto text-indigo-400 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          <p>Loading tickets...</p>
-        </div>
-      {:else if error}
-        <div class="py-8 text-center text-red-400">
-          <p>Error loading tickets: {error}</p>
-        </div>
-      {:else if filteredTickets.length === 0}
-        <div class="py-8 text-center text-gray-400">
-          <p>No tickets match your filters.</p>
-        </div>
-      {:else}
-        <div class="overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-700">
-            <thead class="bg-gray-700">
-              <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                  Ticket
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                  User
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                  Priority
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                  Status
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                  Date
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody class="bg-gray-800 divide-y divide-gray-700">
-              {#each filteredTickets as ticket}
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm font-medium text-white">{ticket.title}</div>
-                    <div class="text-sm text-gray-400 line-clamp-1">{ticket.description}</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-white">{ticket.userEmail}</div>
-                    <div class="text-sm text-gray-400">{ticket.userId}</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <span class="px-2 py-1 text-xs rounded-full {getPriorityColor(ticket.priority)}">
-                      {priorityOptions.find(o => o.value === ticket.priority)?.label || 'Unknown'}
-                    </span>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <span class="px-2 py-1 text-xs rounded-full {getStatusColor(ticket.status)}">
-                      {ticket.status === 'in-progress' ? 'In Progress' : 
-                       ticket.status.charAt(0).toUpperCase() + ticket.status.slice(1)}
-                    </span>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
-                    {formatDate(ticket.createdAt)}
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <div class="flex space-x-2">
-                      {#if ticket.status === 'open'}
-                        <button 
-                          onclick={() => updateTicketStatus(ticket.id, 'in-progress')}
-                          class="text-indigo-400 hover:text-indigo-300"
-                        >
-                          Start
-                        </button>
-                      {/if}
-                      
-                      {#if ticket.status === 'in-progress'}
-                        <button 
-                          onclick={() => updateTicketStatus(ticket.id, 'closed')}
-                          class="text-green-400 hover:text-green-300"
-                        >
-                          Close
-                        </button>
-                      {/if}
-                      
-                      {#if ticket.status === 'closed'}
-                        <button 
-                          onclick={() => updateTicketStatus(ticket.id, 'open')}
-                          class="text-yellow-400 hover:text-yellow-300"
-                        >
-                          Reopen
-                        </button>
-                      {/if}
-                    </div>
-                  </td>
-                </tr>
-              {/each}
-            </tbody>
-          </table>
-        </div>
-      {/if}
-    </div>
-    
     <!-- Stats Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
       <!-- Total Tickets -->
       <div class="bg-gray-800 shadow-lg rounded-lg p-6 border border-gray-700">
         <div class="flex items-center">
@@ -385,7 +222,7 @@
             </svg>
           </div>
           <div class="ml-5">
-            <p class="text-sm font-medium text-gray-400">Total Tickets</p>
+            <p class="text-sm font-medium text-gray-400">Totalt antal ärenden</p>
             <p class="text-lg font-semibold text-white">{tickets.length}</p>
           </div>
         </div>
@@ -400,7 +237,7 @@
             </svg>
           </div>
           <div class="ml-5">
-            <p class="text-sm font-medium text-gray-400">Open Tickets</p>
+            <p class="text-sm font-medium text-gray-400">Öppna ärenden</p>
             <p class="text-lg font-semibold text-white">{tickets.filter(t => t.status === 'open').length}</p>
           </div>
         </div>
@@ -416,7 +253,7 @@
             </svg>
           </div>
           <div class="ml-5">
-            <p class="text-sm font-medium text-gray-400">In Progress</p>
+            <p class="text-sm font-medium text-gray-400">Pågående</p>
             <p class="text-lg font-semibold text-white">{tickets.filter(t => t.status === 'in-progress').length}</p>
           </div>
         </div>
@@ -431,12 +268,23 @@
             </svg>
           </div>
           <div class="ml-5">
-            <p class="text-sm font-medium text-gray-400">Critical Issues</p>
+            <p class="text-sm font-medium text-gray-400">Kritiska ärenden</p>
             <p class="text-lg font-semibold text-white">{tickets.filter(t => t.priority === 'critical').length}</p>
           </div>
         </div>
       </div>
     </div>
+    
+    <!-- Tickets Table -->
+    <AdminTicketSection
+      filteredTickets={filteredTickets}
+      loading={loading}
+      error={error}
+      priorityOptions={priorityOptions}
+      statusOptions={statusOptions}
+      onUpdateStatus={updateTicketStatus}
+      adminId={adminId}
+    />
   </main>
 </div>
 
