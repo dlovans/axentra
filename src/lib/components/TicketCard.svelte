@@ -1,7 +1,8 @@
 <script>
   const {
     ticket,
-    priorityOptions
+    priorityOptions,
+    userId
   } = $props();
   
   // Get priority color class
@@ -48,7 +49,7 @@
     </div>
   </div>
   <div class="mt-2 flex justify-end">
-    <a href={`/dashboard/ticket/${ticket.id}`} class="text-sm text-indigo-400 hover:text-indigo-300">
+    <a href={`/dashboard/${userId}/ticket/${ticket.id}`} class="text-sm text-indigo-400 hover:text-indigo-300">
       Öppna →
     </a>
   </div>
