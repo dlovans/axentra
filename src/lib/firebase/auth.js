@@ -2,9 +2,9 @@ import firebaseInstance from '$lib/firebase/client';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 export async function login(email, password) {
-    console.log(email, password)
     try {
         const result = await signInWithEmailAndPassword(firebaseInstance.auth, email, password);
+        
         return {
             success: true,
             message: 'Login successful'
