@@ -5,17 +5,13 @@ import { goto } from '$app/navigation';
 import firebaseInstance from '$lib/firebase/client';
 
 export async function load({ url }) {
-    console.log('load function executing');
     if (!browser) {
-        console.log('not browser');
         return;
     }
-    console.log('browser');
     
     // Return a promise that resolves when we get the auth state
     return new Promise((resolve) => {
         const unsubscribe = onAuthStateChanged(firebaseInstance.auth, (user) => {
-            console.log('user', user);
             
             // Redirect if needed
             if (user && !url.pathname.startsWith('/dashboard')) {
@@ -24,6 +20,8 @@ export async function load({ url }) {
                 } else {
                     goto(`/dashboard/${user.uid}`);
                 }
+            } else if (!user && url.pathname.startsWith('/dashboard')) {
+                goto('/');
             }
             
             // Resolve the promise with the user data
