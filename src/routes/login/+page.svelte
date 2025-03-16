@@ -2,6 +2,8 @@
   import { onMount } from 'svelte';
   import { login } from '$lib/firebase/auth';
   import Navbar from '$lib/components/Navbar.svelte';
+  import { getDoc, doc } from 'firebase/firestore';
+  import firebaseInstance from '$lib/firebase/client';
   
   // Login form state
   let email = $state('');
@@ -59,15 +61,47 @@
     // Submit form
     isSubmitting = true;
     
-    const result = await login(email, password);
-      console.log('result', result);
-      
+    try {
+      const result = await login(email, password);
+        
       if (!result.success) {
         // Display the error message from the login function
         loginError = result.message;
         isSubmitting = false;
         return;
       }
+      
+      // Get the current user
+      const user = firebaseInstance.auth.currentUser;
+      
+      if (!user) {
+        loginError = 'Ett fel uppstod vid inloggning.';
+        isSubmitting = false;
+        return;
+      }
+      
+      // Get user data to check role
+      const userDoc = await getDoc(doc(firebaseInstance.db, "users", user.uid));
+      
+      if (!userDoc.exists()) {
+        loginError = 'Användaren hittades inte.';
+        isSubmitting = false;
+        return;
+      }
+      
+      const userData = userDoc.data();
+      
+      // Redirect based on role
+      if (userData.role === 'admin') {
+        window.location.href = `/dashboard/admin/${user.uid}`;
+      } else {
+        window.location.href = `/dashboard/${user.uid}`;
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      loginError = 'Ett fel uppstod vid inloggning.';
+      isSubmitting = false;
+    }
   }
 </script>
 
