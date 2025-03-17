@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import { setPageTitle } from '$lib/stores/page-title.js';
   import SupportPackageCard from '$lib/components/SupportPackageCard.svelte';
   import Navbar from '$lib/components/Navbar.svelte';
   import ContactSection from '$lib/components/ContactSection.svelte';
@@ -9,6 +10,24 @@
   import HeroSection from '$lib/components/HeroSection.svelte';
   import ProcessSection from '$lib/components/ProcessSection.svelte';
   import PricingSection from '$lib/components/PricingSection.svelte';
+  
+  onMount(() => {
+    // Set the page title for the home page
+    setPageTitle('Snabb MVP-utveckling för innovativa startups');
+    
+    // Original onMount code
+    const contactElement = document.getElementById('contact-section');
+    if (contactElement) {
+      // Get the navbar height and add additional offset for better positioning
+      const navbarHeight = 30; // Increased offset for more scrolling
+      
+      // Scroll to element with offset
+      window.scrollTo({
+        top: contactElement.offsetTop - navbarHeight,
+        behavior: 'smooth'
+      });
+    }
+  });
   
   // Function to scroll to contact section
   function scrollToContact() {

@@ -4,6 +4,7 @@
   import { goto } from '$app/navigation';
   import firebaseInstance from '$lib/firebase/client';
   import { doc, getDoc, updateDoc, collection, addDoc, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
+  import { setPageTitle } from '$lib/stores/page-title.js';
   
   const { data } = $props();
   
@@ -123,6 +124,12 @@
         console.error('Chat error:', result.message);
       }
     });
+    
+    if (ticket) {
+      setPageTitle(`Ärende: ${ticket.title}`);
+    } else {
+      setPageTitle('Ärende');
+    }
   });
   
   onDestroy(() => {

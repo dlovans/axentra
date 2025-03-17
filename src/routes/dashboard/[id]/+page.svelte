@@ -4,6 +4,7 @@
   import { logout } from '$lib/firebase/auth';
   import { createTicket } from '$lib/firebase/ticket';
   import TicketCard from '$lib/components/TicketCard.svelte';
+  import { setPageTitle } from '$lib/stores/page-title.js';
   
   const { data } = $props();
   
@@ -116,6 +117,7 @@
   let unsubscribeClosed;
   
   onMount(() => {
+    setPageTitle('Dashboard');
     loading = true;
     unsubscribeActive = data.activeTickets.subscribe((updatedTickets) => {
       activeTickets = updatedTickets;

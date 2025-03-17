@@ -1,9 +1,11 @@
 <script>
   import { onMount } from 'svelte';
+  import { setPageTitle } from '$lib/stores/page-title.js';
   
   let language = 'sv'; // Default to Swedish
   
   onMount(() => {
+    setPageTitle('Användarvillkor');
     // Check browser language preference
     const browserLang = navigator.language || navigator.userLanguage;
     if (browserLang.startsWith('en')) {

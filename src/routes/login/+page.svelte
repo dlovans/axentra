@@ -4,6 +4,7 @@
   import Navbar from '$lib/components/Navbar.svelte';
   import { getDoc, doc } from 'firebase/firestore';
   import firebaseInstance from '$lib/firebase/client';
+  import { setPageTitle } from '$lib/stores/page-title.js';
   
   // Login form state
   let email = $state('');
@@ -103,11 +104,11 @@
       isSubmitting = false;
     }
   }
+  
+  onMount(() => {
+    setPageTitle('Logga in');
+  });
 </script>
-
-<svelte:head>
-  <title>Logga In | Axentra</title>
-</svelte:head>
 
 <div class="min-h-screen bg-gray-900 text-white flex flex-col">
   <!-- Glowing accent line at top -->

@@ -7,6 +7,7 @@
   import AdminTicketContainer from '$lib/components/AdminTicketContainer.svelte';
   import AdminTicketSection from '$lib/components/AdminTicketSection.svelte';
   import AdminUserSection from '$lib/components/AdminUserSection.svelte';
+  import { setPageTitle } from '$lib/stores/page-title.js';
   
   const { data } = $props();
   
@@ -103,6 +104,7 @@
   }
   
   onMount(() => {
+    setPageTitle('Admin Dashboard');
     // Subscribe to tickets
     unsubscribeTickets = data.tickets.subscribe((loadedTickets) => {
       tickets = loadedTickets;

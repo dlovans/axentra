@@ -5,6 +5,7 @@
   import firebaseInstance from '$lib/firebase/client';
   import { doc, getDoc, updateDoc, collection, addDoc, getDocs, query, orderBy, Timestamp, serverTimestamp } from 'firebase/firestore';
   import AdminTicket from '$lib/components/AdminTicket.svelte';
+  import { setPageTitle } from '$lib/stores/page-title.js';
   
   const { data } = $props();
   
@@ -151,6 +152,11 @@
   }
   
   onMount(() => {
+    if (ticket) {
+      setPageTitle(`Admin: Ärende ${ticket.title}`);
+    } else {
+      setPageTitle('Admin: Ärende');
+    }
     // Subscribe to ticket data
     unsubscribeTicket = data.ticket.subscribe((ticketData) => {
       ticket = ticketData;
