@@ -14,19 +14,6 @@
   onMount(() => {
     // Set the page title for the home page
     setPageTitle('Snabb MVP-utveckling för innovativa startups');
-    
-    // Original onMount code
-    const contactElement = document.getElementById('contact-section');
-    if (contactElement) {
-      // Get the navbar height and add additional offset for better positioning
-      const navbarHeight = 30; // Increased offset for more scrolling
-      
-      // Scroll to element with offset
-      window.scrollTo({
-        top: contactElement.offsetTop - navbarHeight,
-        behavior: 'smooth'
-      });
-    }
   });
   
   // Function to scroll to contact section
