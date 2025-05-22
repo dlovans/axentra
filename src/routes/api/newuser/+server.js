@@ -4,7 +4,7 @@ import { getFirestore } from 'firebase-admin/firestore';
 import { cert } from 'firebase-admin/app';
 import { json } from '@sveltejs/kit';
 import nodemailer from 'nodemailer';
-import axentraadmin from '../../../../axentraadmin.json';
+import { env } from '$env/dynamic/private';
 import { 
   SMTP_HOST, 
   SMTP_PORT, 
@@ -15,6 +15,20 @@ import {
 
 // Initialize Firebase Admin if not already initialized
 let app;
+
+let axentraadmin = {
+  type: env.ADMIN_FIREBASE_SERVICE_ACCOUNT,
+  project_id: env.ADMIN_FIREBASE_PROJECT_ID,
+  private_key_id: env.ADMIN_FIREBASE_PRIVATE_KEY_ID,
+  private_key: env.ADMIN_FIREBASE_PRIVATE_KEY,
+  client_email: env.ADMIN_FIREBASE_CLIENT_EMAIL,
+  client_id: env.ADMIN_FIREBASE_CLIENT_ID,
+  auth_uri: env.ADMIN_FIREBASE_AUTH_URI,
+  token_uri: env.ADMIN_FIREBASE_TOKEN_URI,
+  auth_provider_x509_cert_url: env.ADMIN_FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
+  client_x509_cert_url: env.ADMIN_FIREBASE_CLIENT_X509_CERT_URL,
+  universe_domain: env.ADMIN_FIREBASE_UNIVERSE_DOMAIN
+};
 try {
   // Check if admin app is already initialized
   const apps = getApps();
