@@ -1,9 +1,43 @@
-Axentra - Rapid MVP Development for Startups
+# Axentra - Startup Development Agency
 
-Services: MVP development (3-8 weeks), web applications, mobile apps, AI platforms
-Technologies: SvelteKit, Node.js, TypeScript, Tailwind CSS, database design
-Portfolio: 25+ projects including Vevra, Alentra, ThinkStep, Trendifi, Believers United
-Approach: Agile development, weekly milestones, rapid prototyping
+## What We Do
+Axentra specializes in rapid MVP development for startups and entrepreneurs. We build market-ready products in 3-8 weeks, helping startups validate ideas, attract investors, and launch faster than competitors.
 
-Contact: dlovan@axentra.agency | +46 72 865 2474 | https://axentra.agency
-Calendly: https://calendly.com/axentra-agency/30min
+## Core Services
+- **Rapid Prototyping:** Concept to clickable prototype in days
+- **Investment-Ready MVPs:** Products that impress investors and early users
+- **AI Platform Development:** AI-powered platforms and APIs
+- **Web Applications:** Modern, scalable, user-focused applications
+- **Enterprise Solutions:** Complex systems with advanced integrations
+
+## Why Choose Axentra
+- **100% Startup-Focused:** Deep understanding of startup challenges and investor expectations
+- **Lightning Fast:** 2-4 weeks to MVP, complete projects in 4-14 weeks
+- **Perfect Track Record:** 100% on-time delivery across 25+ projects
+- **Cost-Effective:** Maximize runway with flexible pricing models
+
+## Portfolio Examples
+- **Vevra:** Community engagement platform (In Progress)
+- **Alentra:** AI-powered job matching platform (8 weeks)
+- **ThinkStep:** Enterprise AI agent infrastructure (6 weeks)
+- **TrendiFi:** AI business intelligence API (4 weeks)
+- **Believers United:** Community platform (3 weeks)
+
+## Pricing Models
+1. **Hourly Rate** - Maximum flexibility, no long-term commitment
+2. **Fixed Price** - Predictable cost with defined scope
+3. **Fixed Price + Equity** - Lower initial cost, shared interests (Recommended)
+4. **Co-Founder** - Full strategic partnership commitment
+
+## Process
+1. **Initial Contact** - 24-hour response time
+2. **Discovery Meeting** - Understand vision and requirements
+3. **Planning & Agreement** - Define scope, timeline, pricing
+4. **Development & Feedback** - Continuous updates and testing
+
+## Contact Information
+- **Email:** dlovan@axentra.agency
+- **WhatsApp:** +46 72 865 2474
+- **Website:** https://axentra.agency
+- **Booking:** https://calendly.com/axentra-agency/30min
+- **Location:** Stockholm, Sweden (Remote-friendly)
