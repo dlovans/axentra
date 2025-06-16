@@ -1,0 +1,43 @@
+Axentra - Rapid MVP Development for Innovative Startups
+
+We specialize in building market-ready MVPs for startups in 3-8 weeks. Our expertise includes:
+
+Core Services:
+- MVP Development (3-8 weeks)
+- Web Application Development
+- Mobile App Development
+- AI Platform Development
+- Full-stack Solutions
+
+Technologies:
+- SvelteKit & Svelte 5
+- Node.js & TypeScript
+- Tailwind CSS
+- Database Design (PostgreSQL, MongoDB)
+- API Development & Integration
+- Real-time Features
+- Payment Processing
+- User Authentication
+- Cloud Deployment
+
+Project Approach:
+- Rapid prototyping methodology
+- Agile development process
+- Weekly milestone deliveries
+- Continuous client communication
+- Post-launch support available
+
+Portfolio Projects:
+- Vevra: AI-powered platform (In Progress)
+- Alentra: Enterprise solution (8 weeks)
+- ThinkStep: Web application (6 weeks) 
+- Trendifi: Mobile-first platform (4 weeks)
+- Believers United: Community platform (3 weeks)
+
+Contact:
+- Email: dlovan@axentra.agency
+- WhatsApp: +46 72 865 2474
+- Website: https://axentra.agency
+- Calendly: https://calendly.com/axentra-agency/30min
+
+Specialties: Startup development, MVP creation, rapid deployment, AI integration, modern web technologies, mobile-responsive design, scalable architecture

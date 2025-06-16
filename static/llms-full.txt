@@ -1,0 +1,63 @@
+Axentra - Rapid MVP Development for Innovative Startups
+
+OVERVIEW
+Axentra specializes in rapid MVP development for startups, delivering market-ready solutions in 3-8 weeks. We focus on speed without compromising quality, helping entrepreneurs validate ideas and launch faster.
+
+CORE SERVICES
+" MVP Development (3-8 weeks timeline)
+" Web Application Development 
+" Mobile App Development
+" AI Platform Development
+" Enterprise Solutions
+" Full-stack Development
+" API Development & Integration
+" Database Design & Architecture
+
+TECHNICAL EXPERTISE
+Frontend: SvelteKit, Svelte 5, React, TypeScript, JavaScript
+Styling: Tailwind CSS, responsive design, mobile-first approach
+Backend: Node.js, Express, API development, serverless functions
+Databases: PostgreSQL, MongoDB, Redis, database optimization
+Cloud: AWS, Vercel, deployment automation, CI/CD
+AI/ML: Platform development, API integrations, intelligent features
+Real-time: WebSocket implementation, live data, notifications
+Payments: Stripe, payment processing, subscription models
+Auth: User authentication, authorization, security best practices
+
+DEVELOPMENT APPROACH
+" Agile methodology with weekly sprints
+" Rapid prototyping and iterative development
+" Continuous client communication and feedback
+" Weekly milestone deliveries and demos
+" Post-launch support and maintenance
+" Scalable architecture from day one
+" Performance optimization and testing
+
+PORTFOLIO PROJECTS
+1. Vevra (In Progress) - AI-powered platform with advanced features
+2. Alentra (8 weeks) - Enterprise solution with complex integrations
+3. ThinkStep (6 weeks) - Web application with real-time capabilities
+4. Trendifi (4 weeks) - Mobile-first platform with social features
+5. Believers United (3 weeks) - Community platform with user management
+
+PROJECT SCOPES
+" MVP: Core functionality, user management, basic features (3-4 weeks)
+" Standard: Full-featured application with integrations (4-6 weeks)
+" Complex: Advanced features, AI/ML, enterprise-grade (6-8 weeks)
+" Enterprise: Custom solutions with specialized requirements (8+ weeks)
+
+CONTACT INFORMATION
+Email: dlovan@axentra.agency
+Phone/WhatsApp: +46 72 865 2474
+Website: https://axentra.agency
+Booking: https://calendly.com/axentra-agency/30min
+Location: Stockholm, Sweden (Remote-friendly)
+
+RESPONSE TIMES
+" Initial inquiries: Within 2 hours
+" Project estimates: Within 24 hours
+" Development updates: Weekly reports
+" Support requests: Same-day response
+
+SPECIALIZATIONS
+Startup MVP development, rapid prototyping, modern web technologies, mobile-responsive design, AI platform development, scalable architecture, performance optimization, user experience design, technical consulting, post-launch support
