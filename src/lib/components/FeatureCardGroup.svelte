@@ -1,7 +1,7 @@
 <script>
   import FeatureCard from './FeatureCard.svelte';
   
-  // Props for the feature card group
+  // Props for the feature card group 
   const {
     features = [
       {
