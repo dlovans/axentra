@@ -1,54 +1,41 @@
 <script>
-  import StatsCard from './StatsCard.svelte';
-  import FeatureCardGroup from './FeatureCardGroup.svelte';
+  import StatsCard from '$lib/components/StatsCard.svelte';
+  import FeatureCardGroup from '$lib/components/FeatureCardGroup.svelte';
   
   // Props for the hero section
   const {
-    title = "Lansera Din Startup Snabbare",
-    subtitle = "Vi bygger marknadsfärdiga MVPs på veckor, inte månader. Förvandla din vision till verklighet med vår snabba utvecklingsmetod.",
-    titleGradientFrom = "emerald-400",
-    titleGradientVia = "teal-400",
-    titleGradientTo = "cyan-400",
-    borderColor = "emerald-500/30",
-    shadowColor = "emerald-500/10"
+    title = "Launch Your Startup Faster",
+    subtitle = "We build market-ready MVPs in weeks, not months. Transform your vision into reality with our rapid development approach.",
+    ctaText = "Get Started",
+    ctaSecondaryText = "View Our Process"
   } = $props();
-  
-  // Convert Tailwind color classes to CSS variables
-  const getTailwindColor = (colorClass) => {
-    const colorMap = {
-      // Emerald
-      'emerald-400': 'rgb(52, 211, 153)',
-      'emerald-500/30': 'rgba(16, 185, 129, 0.3)',
-      'emerald-500/10': 'rgba(16, 185, 129, 0.1)',
-      
-      // Teal
-      'teal-400': 'rgb(45, 212, 191)',
-      
-      // Cyan
-      'cyan-400': 'rgb(34, 211, 238)',
-    };
-    
-    return colorMap[colorClass] || colorClass;
-  };
 </script>
 
-<div class="relative container mx-auto px-4 pt-28">
+<div id="hero" class="relative container mx-auto px-4 pt-28">
   <!-- Hero Section -->
-  <div class="flex flex-col lg:flex-row items-center justify-between gap-8 py-16">
+  <div class="flex flex-col lg:flex-row items-center justify-between gap-12 py-16">
     <!-- Left Column - Main Content -->
     <div class="w-full lg:w-1/2 space-y-8">
       <!-- Main Headline -->
-      <div class="hero-card backdrop-blur-sm bg-gray-800/25 rounded-2xl p-6 md:p-8"
-           style="border: 1px solid {getTailwindColor(borderColor)}; box-shadow: 0 10px 15px -3px {getTailwindColor(shadowColor)};">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-          <span class="text-transparent bg-clip-text"
-                style="background-image: linear-gradient(to right, {getTailwindColor(titleGradientFrom)}, {getTailwindColor(titleGradientVia)}, {getTailwindColor(titleGradientTo)});">
+      <div class="space-y-6">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-600 to-orange-500">
             {title}
           </span>
-        </h2>
-        <p class="text-gray-300 text-lg md:text-xl">
+        </h1>
+        <p class="text-gray-600 text-lg md:text-xl leading-relaxed max-w-lg">
           {subtitle}
         </p>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+          <button class="px-8 py-3 bg-gradient-to-r from-gray-800 to-orange-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-orange-500/25 transform hover:scale-105 transition-all duration-300">
+            {ctaText}
+          </button>
+          <button class="px-8 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:border-gray-400 hover:bg-gray-50 transition-all duration-300">
+            {ctaSecondaryText}
+          </button>
+        </div>
       </div>
       
       <!-- Stats Card -->
@@ -60,4 +47,4 @@
       <FeatureCardGroup />
     </div>
   </div>
-</div> 
+</div>
