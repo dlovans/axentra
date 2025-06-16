@@ -3,72 +3,37 @@
   
   // Props for customization
   const {
-    title = "Vår Specialitet",
-    subtitle = "Vi fokuserar på det vi gör bäst - att bygga snabba, skalbara och användarvänliga digitala lösningar för startups.",
+    title = "Our Specialties",
+    subtitle = "We focus on what we do best - building fast, scalable, and user-friendly digital solutions for startups.",
     specialties = [
       {
-        title: "Supersnabb Utveckling",
-        description: "Vår optimerade utvecklingsprocess levererar resultat på rekordtid utan att kompromissa med kvalitet. Vi använder moderna verktyg och metoder för att maximera effektiviteten.",
+        title: "Lightning-Fast Development",
+        description: "Our optimized development process delivers results in record time without compromising quality. We use modern tools and methods to maximize efficiency.",
         iconPath: "M13 10V3L4 14h7v7l9-11h-7z",
-        gradientFrom: "cyan-400",
-        gradientTo: "blue-400",
-        borderColor: "cyan-500/30",
-        shadowColor: "cyan-500/10",
-        iconBgColor: "cyan-500/30",
-        iconBorderColor: "cyan-500/40",
-        iconTextColor: "cyan-400"
+        variant: "primary"
       },
       {
-        title: "Startup Fokus",
-        description: "Vi förstår startups unika utmaningar och behov. Vår approach är anpassad för att hjälpa dig validera idéer snabbt, attrahera investerare och nå marknaden innan konkurrenterna.",
+        title: "Startup Focus",
+        description: "We understand startups' unique challenges and needs. Our approach is tailored to help you validate ideas quickly, attract investors, and reach the market before competitors.",
         iconPath: "M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4",
-        gradientFrom: "blue-400",
-        gradientTo: "indigo-400",
-        borderColor: "blue-500/30",
-        shadowColor: "blue-500/10",
-        iconBgColor: "blue-500/30",
-        iconBorderColor: "blue-500/40",
-        iconTextColor: "blue-400"
+        variant: "secondary"
       },
       {
-        title: "Webbutveckling",
-        description: "Vi bygger moderna, responsiva och snabba webbapplikationer med fokus på användarupplevelse. Våra lösningar är skalbara, säkra och byggda med framtidssäkra teknologier.",
+        title: "Modern Web Development",
+        description: "We build modern, responsive, and fast web applications focused on user experience. Our solutions are scalable, secure, and built with future-proof technologies.",
         iconPath: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
-        gradientFrom: "teal-400",
-        gradientTo: "emerald-400",
-        borderColor: "teal-500/30",
-        shadowColor: "teal-500/10",
-        iconBgColor: "teal-500/30",
-        iconBorderColor: "teal-500/40",
-        iconTextColor: "teal-400"
+        variant: "accent"
       }
     ]
   } = $props();
-  
-  // Convert Tailwind color classes to CSS variables
-  const getTailwindColor = (colorClass) => {
-    const colorMap = {
-      // Cyan
-      'cyan-400': 'rgb(34, 211, 238)',
-      
-      // Blue
-      'blue-400': 'rgb(96, 165, 250)',
-      
-      // Teal
-      'teal-400': 'rgb(45, 212, 191)'
-    };
-    
-    return colorMap[colorClass] || colorClass;
-  };
 </script>
 
-<div class="relative container mx-auto px-4 py-8">
+<div id="features" class="relative container mx-auto px-4 py-16">
   <div class="text-center mb-12">
-    <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text mb-4"
-        style="background-image: linear-gradient(to right, {getTailwindColor('cyan-400')}, {getTailwindColor('blue-400')}, {getTailwindColor('teal-400')});">
+    <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-600 to-orange-500 mb-4">
       {title}
     </h2>
-    <p class="text-gray-300 text-lg max-w-3xl mx-auto">
+    <p class="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
       {subtitle}
     </p>
   </div>
@@ -79,14 +44,8 @@
         title={specialty.title}
         description={specialty.description}
         iconPath={specialty.iconPath}
-        gradientFrom={specialty.gradientFrom}
-        gradientTo={specialty.gradientTo}
-        borderColor={specialty.borderColor}
-        shadowColor={specialty.shadowColor}
-        iconBgColor={specialty.iconBgColor}
-        iconBorderColor={specialty.iconBorderColor}
-        iconTextColor={specialty.iconTextColor}
+        variant={specialty.variant}
       />
     {/each}
   </div>
-</div> 
+</div>
