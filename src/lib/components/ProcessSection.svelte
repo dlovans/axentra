@@ -3,92 +3,47 @@
   
   // Props for the process section
   const {
-    title = "Vår Process",
-    subtitle = "En enkel och effektiv väg från idé till färdig produkt. Vi håller processen transparent och fokuserad på dina behov.",
+    title = "Our Process",
+    subtitle = "A simple and efficient path from idea to finished product. We keep the process transparent and focused on your needs.",
     steps = [
       {
         stepNumber: "01",
-        title: "Första Kontakt",
-        description: "Du kontaktar oss genom formuläret på vår hemsida. Berätta kort om din idé och vilken typ av lösning du söker. Vi återkommer vanligtvis inom 24 timmar.",
+        title: "Initial Contact",
+        description: "You contact us through the form on our website. Tell us briefly about your idea and what type of solution you're looking for. We usually get back to you within 24 hours.",
         iconPath: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
-        gradientFrom: "indigo-400",
-        gradientTo: "purple-400",
-        borderColor: "indigo-500/30",
-        shadowColor: "indigo-500/10",
-        iconBgColor: "indigo-500/30",
-        iconBorderColor: "indigo-500/40",
-        iconTextColor: "indigo-400",
-        stepNumberColor: "indigo-500/40"
+        variant: "primary"
       },
       {
         stepNumber: "02",
-        title: "Möte i Stockholm",
-        description: "Vi bokar ett personligt möte i Stockholm för att diskutera ditt projekt i detalj. Här får vi en djupare förståelse för din vision, mål och tekniska behov.",
+        title: "Discovery Meeting",
+        description: "We schedule a personal meeting to discuss your project in detail. Here we gain a deeper understanding of your vision, goals, and technical requirements.",
         iconPath: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z",
-        gradientFrom: "violet-400",
-        gradientTo: "fuchsia-400",
-        borderColor: "violet-500/30",
-        shadowColor: "violet-500/10",
-        iconBgColor: "violet-500/30",
-        iconBorderColor: "violet-500/40",
-        iconTextColor: "violet-400",
-        stepNumberColor: "violet-500/40"
+        variant: "secondary"
       },
       {
         stepNumber: "03",
-        title: "Planering & Avtal",
-        description: "Vi diskuterar prissättning, samarbetsform och projektets omfattning. Tillsammans definierar vi tydliga mål, tidsramar och leverabler för att säkerställa ett framgångsrikt projekt.",
+        title: "Planning & Agreement",
+        description: "We discuss pricing, collaboration format, and project scope. Together we define clear goals, timelines, and deliverables to ensure a successful project.",
         iconPath: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
-        gradientFrom: "fuchsia-400",
-        gradientTo: "pink-400",
-        borderColor: "fuchsia-500/30",
-        shadowColor: "fuchsia-500/10",
-        iconBgColor: "fuchsia-500/30",
-        iconBorderColor: "fuchsia-500/40",
-        iconTextColor: "fuchsia-400",
-        stepNumberColor: "fuchsia-500/40"
+        variant: "accent"
       },
       {
         stepNumber: "04",
-        title: "Utveckling & Feedback",
-        description: "Vi påbörjar utvecklingen med kontinuerlig feedbackloop. Du får regelbundna uppdateringar och möjlighet att testa och ge feedback under hela processen, vilket säkerställer att slutprodukten möter dina förväntningar.",
+        title: "Development & Feedback",
+        description: "We begin development with a continuous feedback loop. You get regular updates and opportunities to test and provide feedback throughout the process, ensuring the final product meets your expectations.",
         iconPath: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
-        gradientFrom: "rose-400",
-        gradientTo: "red-400",
-        borderColor: "rose-500/30",
-        shadowColor: "rose-500/10",
-        iconBgColor: "rose-500/30",
-        iconBorderColor: "rose-500/40",
-        iconTextColor: "rose-400",
-        stepNumberColor: "rose-500/40"
+        variant: "primary"
       }
     ]
   } = $props();
-  
-  // Convert Tailwind color classes to CSS variables
-  const getTailwindColor = (colorClass) => {
-    const colorMap = {
-      // Cyan
-      'cyan-400': 'rgb(34, 211, 238)',
-      
-      // Blue
-      'blue-400': 'rgb(96, 165, 250)',
-      
-      // Teal
-      'teal-400': 'rgb(45, 212, 191)'
-    };
-    
-    return colorMap[colorClass] || colorClass;
-  };
 </script>
 
-<div id="process-section" class="relative container mx-auto px-4 py-16">
+<div id="process" class="relative container mx-auto px-4 py-16">
   <div class="text-center mb-12">
-    <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text mb-4"
-        style="background-image: linear-gradient(to right, {getTailwindColor('cyan-400')}, {getTailwindColor('blue-400')}, {getTailwindColor('teal-400')});">
+    <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-600 to-orange-500 mb-4">
       {title}
     </h2>
-    <p class="text-gray-300 text-lg max-w-3xl mx-auto">
+    <p class="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
       {subtitle}
     </p>
   </div>
@@ -100,15 +55,8 @@
         title={step.title}
         description={step.description}
         iconPath={step.iconPath}
-        gradientFrom={step.gradientFrom}
-        gradientTo={step.gradientTo}
-        borderColor={step.borderColor}
-        shadowColor={step.shadowColor}
-        iconBgColor={step.iconBgColor}
-        iconBorderColor={step.iconBorderColor}
-        iconTextColor={step.iconTextColor}
-        stepNumberColor={step.stepNumberColor}
+        variant={step.variant}
       />
     {/each}
   </div>
-</div> 
+</div>
