@@ -187,7 +187,7 @@
             </div>
           </div>
           <h3 class="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-3 md:mb-4">Message Sent!</h3>
-          <p class="text-gray-700 text-base md:text-lg mb-6 md:mb-8">Thank you for your message! We'll get back to you shortly.</p>
+          <p class="text-gray-700 text-base md:text-lg mb-6 md:mb-8">Thank you for your message! I'll get back to you shortly.</p>
           <button 
             type="button" 
             onclick={() => {

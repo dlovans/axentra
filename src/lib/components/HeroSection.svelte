@@ -4,10 +4,10 @@
   
   // Props for the hero section
   const {
-    title = "Launch Your Startup Faster",
-    subtitle = "We build market-ready MVPs in weeks, not months. Transform your vision into reality with our rapid development approach.",
+    title = "Custom API Solutions",
+    subtitle = "Turn your app ideas into reality with robust backend systems. I solve integration headaches, performance bottlenecks, and scaling challenges so you can focus on your business.",
     ctaText = "Get Started",
-    ctaSecondaryText = "View Our Process"
+    ctaSecondaryText = "View My Process"
   } = $props();
 </script>
 
@@ -29,12 +29,12 @@
         
         <!-- CTA Buttons -->
         <div class="flex flex-col sm:flex-row gap-4 pt-4">
-          <button class="px-8 py-3 bg-gradient-to-r from-gray-800 to-orange-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-orange-500/25 transform hover:scale-105 transition-all duration-300">
+          <a href="#contact-section" class="inline-block px-8 py-3 bg-gradient-to-r from-gray-800 to-orange-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-orange-500/25 transform hover:scale-105 transition-all duration-300">
             {ctaText}
-          </button>
-          <button class="px-8 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:border-gray-400 hover:bg-gray-50 transition-all duration-300">
+          </a>
+          <a href="#process" class="inline-block px-8 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:border-gray-400 hover:bg-gray-50 transition-all duration-300">
             {ctaSecondaryText}
-          </button>
+          </a>
         </div>
       </div>
       

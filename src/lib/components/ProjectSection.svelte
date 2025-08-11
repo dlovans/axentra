@@ -3,8 +3,8 @@
   
   // Props for the project section
   const {
-    title = "Our Projects",
-    subtitle = "Explore some of the innovative solutions we've built for startups. From MVPs to full-scale applications, see how we transform ideas into reality.",
+    title = "My Projects",
+    subtitle = "Explore some of the innovative solutions I've built. From APIs to full-scale applications, see how I transform ideas into reality.",
     projects = [
       {
         title: "Vevra",

@@ -10,14 +10,14 @@
   
   <div class="relative z-10">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-2">
-      <h3 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-600 to-orange-500">Complete Support Package</h3>
+      <h3 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-600 to-orange-500">API Maintenance & Support</h3>
       <div class="px-3 py-1 bg-orange-100 border border-orange-200 rounded-full self-start">
         <span class="text-orange-700 text-sm font-medium whitespace-nowrap">Recommended</span>
       </div>
     </div>
     
     <p class="text-gray-600 mb-8">
-      Our complete support package gives you access to all the help you need to keep your product in top condition. From technical support to minor changes and emergency assistance.
+      Keep your APIs running smoothly with my comprehensive maintenance package. From performance monitoring to security updates and emergency support.
     </p>
     
     <!-- Feature cards using CSS Grid for better alignment -->
@@ -32,8 +32,8 @@
             </svg>
           </div>
           <div>
-            <h4 class="text-lg font-medium text-gray-800 mb-1">Technical Support</h4>
-            <p class="text-gray-600 text-sm">Unlimited support via email and direct communication. Response within 24 hours. Help with technical questions, troubleshooting, and product usage.</p>
+            <h4 class="text-lg font-medium text-gray-800 mb-1">API Support</h4>
+            <p class="text-gray-600 text-sm">Unlimited support for API issues, integration questions, and troubleshooting. Response within 24 hours for all technical inquiries.</p>
           </div>
         </div>
         
@@ -45,8 +45,8 @@
             </svg>
           </div>
           <div>
-            <h4 class="text-lg font-medium text-gray-800 mb-1">Minor Changes</h4>
-            <p class="text-gray-600 text-sm">Up to 5 hours of work per month for minor changes and updates. Larger changes may require a separate quote.</p>
+            <h4 class="text-lg font-medium text-gray-800 mb-1">API Updates</h4>
+            <p class="text-gray-600 text-sm">Up to 5 hours of work per month for endpoint modifications, performance optimizations, and minor feature additions.</p>
           </div>
         </div>
       </div>
@@ -74,8 +74,8 @@
             </svg>
           </div>
           <div>
-            <h4 class="text-lg font-medium text-gray-800 mb-1">Proactive Monitoring</h4>
-            <p class="text-gray-600 text-sm">We monitor your application to detect and resolve issues before they affect your users.</p>
+            <h4 class="text-lg font-medium text-gray-800 mb-1">API Monitoring</h4>
+            <p class="text-gray-600 text-sm">Continuous monitoring of API performance, uptime, and error rates. Proactive alerts and issue resolution.</p>
           </div>
         </div>
       </div>

@@ -10,31 +10,34 @@
   let estimatedCost = $state('');
   
   const projectTypes = [
-    { value: 'mvp', label: 'MVP/Prototype', weeks: 4 },
-    { value: 'web-app', label: 'Web Application', weeks: 6 },
-    { value: 'mobile-app', label: 'Mobile App', weeks: 8 },
-    { value: 'ai-platform', label: 'AI Platform', weeks: 10 },
-    { value: 'enterprise', label: 'Enterprise Solution', weeks: 12 }
+    { value: 'rest-api', label: 'REST API Development', weeks: 3 },
+    { value: 'graphql-api', label: 'GraphQL API', weeks: 4 },
+    { value: 'grpc-service', label: 'gRPC Service', weeks: 4 },
+    { value: 'api-integration', label: 'API Integration', weeks: 2 },
+    { value: 'microservices', label: 'Microservices Architecture', weeks: 8 },
+    { value: 'api-maintenance', label: 'API Maintenance & Support', weeks: 1 }
   ];
   
   const budgetRanges = [
-    { value: '5k-15k', label: '$5k - $15k' },
-    { value: '15k-30k', label: '$15k - $30k' },
-    { value: '30k-50k', label: '$30k - $50k' },
-    { value: '50k+', label: '$50k+' }
+    { value: '2k-8k', label: '$2k - $8k' },
+    { value: '8k-20k', label: '$8k - $20k' },
+    { value: '20k-40k', label: '$20k - $40k' },
+    { value: '40k+', label: '$40k+' }
   ];
   
   const availableFeatures = [
-    'User Authentication',
-    'Payment Processing',
-    'Admin Dashboard',
-    'Real-time Chat',
-    'API Integration',
-    'Mobile Responsive',
-    'AI/ML Features',
-    'Database Design',
+    'Authentication & Authorization',
+    'Rate Limiting & Throttling',
+    'API Documentation',
+    'Database Integration',
+    'Caching Layer',
+    'Error Handling & Logging',
+    'Data Validation',
     'File Upload/Storage',
-    'Email Notifications'
+    'Third-party Integrations',
+    'Real-time Features',
+    'Security Hardening',
+    'Performance Monitoring'
   ];
   
   function toggleFeature(feature) {
@@ -54,9 +57,9 @@
     
     estimatedWeeks = Math.ceil((baseWeeks + featureWeeks) * urgencyMultiplier);
     
-    if (budget === '5k-15k') estimatedCost = 'Basic package available';
-    else if (budget === '15k-30k') estimatedCost = 'Full-featured solution';
-    else if (budget === '30k-50k') estimatedCost = 'Premium enterprise solution';
+    if (budget === '2k-8k') estimatedCost = 'Basic API solution';
+    else if (budget === '8k-20k') estimatedCost = 'Full-featured API';
+    else if (budget === '20k-40k') estimatedCost = 'Enterprise-grade API';
     else estimatedCost = 'Custom enterprise solution';
     
     showResults = true;
@@ -67,7 +70,7 @@
     console.log('Estimate submitted:', {
       projectType, timeline, budget, features, email, projectDescription
     });
-    alert('Thanks! We\'ll send your detailed estimate within 24 hours.');
+    alert('Thanks! I\'ll send your detailed estimate within 24 hours.');
   }
 </script>
 
@@ -75,10 +78,10 @@
   <div class="max-w-4xl mx-auto">
     <div class="text-center mb-12">
       <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-600 to-orange-500 mb-4">
-        Project Estimator
+        API Project Estimator
       </h2>
       <p class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
-        Get an instant timeline and cost estimate for your project in under 2 minutes.
+        Get an instant timeline and cost estimate for your API development, integration, or maintenance project.
       </p>
     </div>
     
@@ -86,7 +89,7 @@
       <form class="space-y-8">
         <!-- Project Type -->
         <div>
-          <label class="block text-lg font-semibold text-gray-800 mb-4">What type of project do you need?</label>
+          <label class="block text-lg font-semibold text-gray-800 mb-4">What type of API service do you need?</label>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {#each projectTypes as type}
               <button
@@ -95,7 +98,7 @@
                 class="p-4 border-2 rounded-lg text-left transition-all duration-200 {projectType === type.value ? 'border-orange-500 bg-orange-50' : 'border-gray-200 hover:border-gray-300'}"
               >
                 <div class="font-medium text-gray-800">{type.label}</div>
-                <div class="text-sm text-gray-500">{type.weeks} weeks baseline</div>
+                <div class="text-sm text-gray-500">{type.weeks} {type.weeks === 1 ? 'week' : 'weeks'} baseline</div>
               </button>
             {/each}
           </div>
@@ -124,7 +127,7 @@
         
         <!-- Features -->
         <div>
-          <label class="block text-lg font-semibold text-gray-800 mb-4">What features do you need? (Select all that apply)</label>
+          <label class="block text-lg font-semibold text-gray-800 mb-4">What API features do you need? (Select all that apply)</label>
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {#each availableFeatures as feature}
               <button
@@ -157,7 +160,7 @@
         <!-- Results -->
         {#if showResults}
           <div class="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6">
-            <h3 class="text-xl font-bold text-green-800 mb-4">📊 Your Project Estimate</h3>
+            <h3 class="text-xl font-bold text-green-800 mb-4">📊 Your API Project Estimate</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <div class="text-3xl font-bold text-green-700">{estimatedWeeks} weeks</div>
@@ -170,7 +173,7 @@
             </div>
             <div class="mt-4 p-4 bg-white/50 rounded-lg">
               <p class="text-sm text-gray-600">
-                <strong>Note:</strong> This is a rough estimate. Final timeline and cost depend on specific requirements, integrations, and complexity.
+                <strong>Note:</strong> This is a rough estimate. Final timeline and cost depend on API complexity, data models, integration requirements, and performance needs.
               </p>
             </div>
           </div>

@@ -3,18 +3,18 @@
   const {
     stats = [
       {
-        value: "2-4",
-        label: "Weeks to MVP",
+        value: "REST",
+        label: "API Architecture",
         colSpan: 1
       },
       {
-        value: "100%",
-        label: "Startup Focused",
+        value: "GraphQL",
+        label: "Query Language",
         colSpan: 1
       },
       {
-        value: "24/7",
-        label: "Support & Collaboration",
+        value: "gRPC",
+        label: "High Performance",
         colSpan: 1
       }
     ]

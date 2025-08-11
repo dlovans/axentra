@@ -3,34 +3,34 @@
   
   // Props for the process section
   const {
-    title = "Our Process",
-    subtitle = "A simple and efficient path from idea to finished product. We keep the process transparent and focused on your needs.",
+    title = "My Process",
+    subtitle = "A structured approach to API development that ensures quality, performance, and seamless integration from concept to deployment.",
     steps = [
       {
         stepNumber: "01",
-        title: "Initial Contact",
-        description: "You contact us through the form on our website. Tell us briefly about your idea and what type of solution you're looking for. We usually get back to you within 24 hours.",
+        title: "Requirements Analysis",
+        description: "I start by understanding your API needs, data models, and integration requirements. I analyze your existing systems and define the API specifications together.",
         iconPath: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
         variant: "primary"
       },
       {
         stepNumber: "02",
-        title: "Discovery Meeting",
-        description: "We schedule a personal meeting to discuss your project in detail. Here we gain a deeper understanding of your vision, goals, and technical requirements.",
+        title: "API Design & Documentation",
+        description: "I create detailed API specifications, endpoint definitions, and comprehensive documentation. This includes data schemas, authentication methods, and error handling strategies.",
         iconPath: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z",
         variant: "secondary"
       },
       {
         stepNumber: "03",
-        title: "Planning & Agreement",
-        description: "We discuss pricing, collaboration format, and project scope. Together we define clear goals, timelines, and deliverables to ensure a successful project.",
+        title: "Development & Testing",
+        description: "I build your API with clean, maintainable code following best practices. Every endpoint is thoroughly tested for functionality, performance, and security.",
         iconPath: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
         variant: "accent"
       },
       {
         stepNumber: "04",
-        title: "Development & Feedback",
-        description: "We begin development with a continuous feedback loop. You get regular updates and opportunities to test and provide feedback throughout the process, ensuring the final product meets your expectations.",
+        title: "Deployment & Support",
+        description: "I deploy your API to production with proper monitoring and logging. I provide ongoing support, performance optimization, and help with integration challenges.",
         iconPath: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
         variant: "primary"
       }

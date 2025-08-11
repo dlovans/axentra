@@ -8,6 +8,6 @@ export function setPageTitle(title) {
   if (title) {
     pageTitle.set(`Axentra | ${title}`);
   } else {
-    pageTitle.set('Axentra | Rapid MVP Development for Innovative Startups');
+    pageTitle.set('Axentra | Professional API Development Services');
   }
 } 

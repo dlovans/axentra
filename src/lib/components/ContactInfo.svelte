@@ -10,7 +10,7 @@
       </div>
       <div class="overflow-hidden">
         <h3 class="text-lg md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-orange-500 mb-1 md:mb-2">Email</h3>
-        <p class="text-gray-600 mb-1 md:mb-2 text-sm md:text-base">Send us an email directly:</p>
+        <p class="text-gray-600 mb-1 md:mb-2 text-sm md:text-base">Send me an email directly:</p>
         <a href="mailto:dlovan@axentra.agency" class="text-sm md:text-lg font-medium text-gray-800 hover:text-orange-600 transition-colors break-all">dlovan@axentra.agency</a>
       </div>
     </div>
@@ -27,7 +27,7 @@
       </div>
       <div>
         <h3 class="text-lg md:text-xl font-bold text-gray-700 mb-1 md:mb-2">Location</h3>
-        <p class="text-gray-600 mb-1 md:mb-2 text-sm md:text-base">We're located in:</p>
+        <p class="text-gray-600 mb-1 md:mb-2 text-sm md:text-base">I'm located in:</p>
         <p class="text-sm md:text-lg font-medium text-gray-800">Stockholm, Sweden</p>
       </div>
     </div>
@@ -43,7 +43,7 @@
       </div>
       <div>
         <h3 class="text-lg md:text-xl font-bold text-green-700 mb-1 md:mb-2">Response Time</h3>
-        <p class="text-gray-600 mb-1 md:mb-2 text-sm md:text-base">We usually respond within:</p>
+        <p class="text-gray-600 mb-1 md:mb-2 text-sm md:text-base">I usually respond within:</p>
         <p class="text-sm md:text-lg font-medium text-gray-800">24 hours</p>
       </div>
     </div>

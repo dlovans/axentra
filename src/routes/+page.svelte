@@ -17,7 +17,7 @@
   
   onMount(() => {
     // Set the page title for the home page
-    setPageTitle('Rapid MVP Development for Innovative Startups');
+    setPageTitle('API Development - REST, GraphQL, and gRPC');
   });
   
   // Function to scroll to contact section
