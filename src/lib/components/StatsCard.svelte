@@ -1,20 +1,23 @@
 <script>
   // Props for the stats card
+  const currentYear = new Date().getFullYear();
+  const yearsExperience = currentYear - 2022 + 1;
+  
   const {
     stats = [
       {
-        value: "REST",
-        label: "API Architecture",
+        value: `${yearsExperience}+`,
+        label: "Years Experience",
         colSpan: 1
       },
       {
-        value: "GraphQL",
-        label: "Query Language",
+        value: "7+",
+        label: "Projects Delivered",
         colSpan: 1
       },
       {
-        value: "gRPC",
-        label: "High Performance",
+        value: "100%",
+        label: "On-Time Delivery",
         colSpan: 1
       }
     ]

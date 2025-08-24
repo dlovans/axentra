@@ -7,13 +7,13 @@
     subtitle = "Explore some of the innovative solutions I've built. From APIs to full-scale applications, see how I transform ideas into reality.",
     projects = [
       {
-        title: "Vevra",
-        description: "Comprehensive community engagement platform designed to drive actionable outcomes. Features activity tracking, real-time communication, and hierarchical project organization to transform passive communities into productive ecosystems.",
-        image: "/vevra.png",
-        demoUrl: "https://vevra.app",
+        title: "Universal Identity Protocol",
+        description: "Biometric-first authentication API that replaces passwords with mobile biometric sensors. Users authenticate and sign documents, contracts, and transactions securely across platforms with self-sovereign cryptographic identity.",
+        image: "/uip.png",
+        demoUrl: "https://uip.dev",
         variant: "accent",
         developmentTime: "In Progress",
-        scope: "Complete Platform"
+        scope: "31 API Endpoints"
       },
       {
         title: "Alentra",

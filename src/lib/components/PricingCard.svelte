@@ -12,12 +12,12 @@
   
   const variantStyles = {
     primary: {
-      card: "bg-white border-2 border-gray-200 shadow-lg shadow-gray-500/10 hover:shadow-gray-500/20",
-      icon: "bg-gradient-to-br from-gray-600 to-gray-700 text-white",
-      title: "text-gray-700",
-      price: "text-gray-800",
-      feature: "text-gray-600",
-      checkIcon: "text-gray-600"
+      card: "bg-gradient-to-br from-gray-900 to-gray-800 border-2 border-blue-400 shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20",
+      icon: "bg-gradient-to-br from-blue-500 to-blue-600 text-white",
+      title: "text-blue-400",
+      price: "text-white",
+      feature: "text-gray-300",
+      checkIcon: "text-blue-400"
     },
     secondary: {
       card: "bg-gradient-to-br from-orange-50 to-yellow-50 border-2 border-orange-200 shadow-lg shadow-orange-500/10 hover:shadow-orange-500/20",
@@ -28,12 +28,20 @@
       checkIcon: "text-orange-600"
     },
     accent: {
-      card: "bg-gradient-to-br from-gray-900 to-gray-800 border-2 border-orange-400 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30",
-      icon: "bg-gradient-to-br from-orange-500 to-orange-600 text-white",
-      title: "text-orange-400",
+      card: "bg-gradient-to-br from-gray-900 to-gray-800 border-2 border-green-400 shadow-lg shadow-green-500/20 hover:shadow-green-500/30",
+      icon: "bg-gradient-to-br from-green-500 to-green-600 text-white",
+      title: "text-green-400",
       price: "text-white",
       feature: "text-gray-300",
-      checkIcon: "text-orange-400"
+      checkIcon: "text-green-400"
+    },
+    enterprise: {
+      card: "bg-gradient-to-br from-slate-100 via-gray-50 to-slate-100 border-2 border-gray-300 shadow-xl shadow-gray-400/20 hover:shadow-gray-400/30 relative before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:animate-pulse before:rounded-xl",
+      icon: "bg-gradient-to-br from-slate-600 via-gray-500 to-slate-700 text-white shadow-lg",
+      title: "text-slate-700 font-extrabold",
+      price: "text-slate-800 bg-gradient-to-r from-slate-600 to-slate-800 bg-clip-text text-transparent",
+      feature: "text-slate-600",
+      checkIcon: "text-slate-600"
     }
   };
 </script>
@@ -56,13 +64,12 @@
       <h3 class="text-xl font-bold mb-1 {variantStyles[variant].title} group-hover:scale-105 transition-transform duration-300">
         {title}
       </h3>
-      <div class="flex items-baseline">
+      <div class="flex flex-col items-center">
         {#if price.toLowerCase() === 'equity'}
-          <span class="text-5xl font-bold {variantStyles[variant].price}">{price}</span>
+          <span class="text-2xl font-bold {variantStyles[variant].price}">{price}</span>
         {:else}
-          <span class="text-3xl font-bold {variantStyles[variant].price}">$</span>
-          <span class="text-5xl font-bold {variantStyles[variant].price} mx-1">{price}</span>
-          <span class="text-xl {variantStyles[variant].feature}">{unit}</span>
+          <span class="text-lg font-bold {variantStyles[variant].price}">{price}</span>
+          <span class="text-xs font-medium mt-1 {variantStyles[variant].price} opacity-60">{unit}</span>
         {/if}
       </div>
     </div>

@@ -10,9 +10,6 @@
   let estimatedCost = $state('');
   
   const projectTypes = [
-    { value: 'rest-api', label: 'REST API Development', weeks: 3 },
-    { value: 'graphql-api', label: 'GraphQL API', weeks: 4 },
-    { value: 'grpc-service', label: 'gRPC Service', weeks: 4 },
     { value: 'api-integration', label: 'API Integration', weeks: 2 },
     { value: 'microservices', label: 'Microservices Architecture', weeks: 8 },
     { value: 'api-maintenance', label: 'API Maintenance & Support', weeks: 1 }
