@@ -34,10 +34,10 @@
     
     <!-- Project Image (Fixed Height) -->
     <div class="relative h-32 overflow-hidden">
-      <img 
-        src={image} 
+      <img
+        src={image}
         alt={title}
-        class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        class="w-full h-full object-contain bg-white transition-transform duration-500 hover:scale-105"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
       

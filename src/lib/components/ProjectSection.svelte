@@ -9,8 +9,8 @@
       {
         title: "Universal Identity Protocol",
         description: "Biometric-first authentication API that replaces passwords with mobile biometric sensors. Users authenticate and sign documents, contracts, and transactions securely across platforms with self-sovereign cryptographic identity.",
-        image: "/uip.png",
-        demoUrl: "https://uip.dev",
+        image: "/UIP.png",
+        demoUrl: "https://uip-web-consumer-production.up.railway.app",
         variant: "accent",
         developmentTime: "In Progress",
         scope: "31 API Endpoints"
