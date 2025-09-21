@@ -3,7 +3,7 @@
     title = "Ready to Build Your API?",
     subtitle = "Get a free consultation to discuss your API requirements, architecture, and implementation timeline.",
     ctaText = "Book Free Consultation",
-    secondaryText = "Or message us directly"
+    secondaryText = "Or message me directly"
   } = $props();
 </script>
 

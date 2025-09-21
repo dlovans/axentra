@@ -34,15 +34,6 @@
         scope: "Full System"
       },
       {
-        title: "TrendiFi",
-        description: "Sophisticated AI-powered insight generation API that transforms raw data into actionable business intelligence. Features customizable data structures and real-time analysis capabilities for enterprise decision-making.",
-        image: "/trendifi.png",
-        demoUrl: "https://trendifi.app",
-        variant: "secondary",
-        developmentTime: "4 weeks",
-        scope: "Full System"
-      },
-      {
         title: "Believers United",
         description: "Community platform designed for Quran-only believers, fostering meaningful connections and discussions in a space built on shared faith and values.",
         image: "/bu.png",

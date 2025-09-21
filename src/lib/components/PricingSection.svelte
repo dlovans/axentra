@@ -8,7 +8,7 @@
     pricingOptions = [
       {
         title: "Hourly Rate",
-        price: "$70",
+        price: "$100",
         unit: "hour ex. tax",
         features: [
           "Perfect for API consultations",
@@ -21,7 +21,7 @@
       },
       {
         title: "Fixed Price",
-        price: "Minimum $3,000",
+        price: "Minimum $8,000",
         unit: "project ex. tax",
         features: [
           "Complete API development",
@@ -36,7 +36,7 @@
       },
       {
         title: "Retainer",
-        price: "$4,500",
+        price: "$7,500",
         unit: "month ex. tax",
         features: [
           "Ongoing API maintenance",
