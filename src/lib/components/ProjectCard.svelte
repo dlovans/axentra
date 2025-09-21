@@ -58,9 +58,9 @@
     <div class="p-4 flex flex-col flex-1">
       
       <!-- Project Name -->
-      <h3 class="text-lg font-bold text-gray-800 mb-2">
+      <h4 class="text-lg font-bold text-gray-800 mb-2">
         {title}
-      </h3>
+      </h4>
       
       <!-- Description (Takes Available Space) -->
       <p class="text-gray-600 text-sm leading-relaxed mb-4 flex-1">

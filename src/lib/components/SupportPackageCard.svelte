@@ -32,7 +32,7 @@
             </svg>
           </div>
           <div>
-            <h4 class="text-lg font-medium text-gray-800 mb-1">API Support</h4>
+            <div class="text-lg font-medium text-gray-800 mb-1">API Support</div>
             <p class="text-gray-600 text-sm">Unlimited support for API issues, integration questions, and troubleshooting. Response within 24 hours for all technical inquiries.</p>
           </div>
         </div>
@@ -45,7 +45,7 @@
             </svg>
           </div>
           <div>
-            <h4 class="text-lg font-medium text-gray-800 mb-1">API Updates</h4>
+            <div class="text-lg font-medium text-gray-800 mb-1">API Updates</div>
             <p class="text-gray-600 text-sm">Up to 5 hours of work per month for endpoint modifications, performance optimizations, and minor feature additions.</p>
           </div>
         </div>
@@ -61,7 +61,7 @@
             </svg>
           </div>
           <div>
-            <h4 class="text-lg font-medium text-gray-800 mb-1">Emergency Support</h4>
+            <div class="text-lg font-medium text-gray-800 mb-1">Emergency Support</div>
             <p class="text-gray-600 text-sm">Access to emergency support for critical issues. Guaranteed response within 2 hours, 24/7, all days.</p>
           </div>
         </div>
@@ -74,7 +74,7 @@
             </svg>
           </div>
           <div>
-            <h4 class="text-lg font-medium text-gray-800 mb-1">API Monitoring</h4>
+            <div class="text-lg font-medium text-gray-800 mb-1">API Monitoring</div>
             <p class="text-gray-600 text-sm">Continuous monitoring of API performance, uptime, and error rates. Proactive alerts and issue resolution.</p>
           </div>
         </div>

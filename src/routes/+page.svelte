@@ -30,8 +30,8 @@
 </script>
 
 <svelte:head>
-  <title>Axentra | Custom API Development & Backend Solutions | Stockholm</title>
-  <meta name="description" content="Expert API development services in Stockholm. I build custom REST APIs, solve integration challenges, optimize performance bottlenecks, and create scalable backend systems for modern applications." />
+  <title>Axentra | Custom API Development | Stockholm</title>
+  <meta name="description" content="Expert API development services in Stockholm. I build custom REST APIs, solve integration challenges, and create scalable backend systems." />
   <meta name="keywords" content="custom API development, backend solutions, REST API Stockholm, API integration services, microservices development, API performance optimization, scalable backend systems, API consulting, webhook implementation, database optimization" />
 
   <!-- Open Graph / Facebook -->

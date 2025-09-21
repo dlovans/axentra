@@ -61,9 +61,9 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={iconPath}></path>
         </svg>
       </div>
-      <h3 class="text-xl font-bold mb-1 {variantStyles[variant].title} group-hover:scale-105 transition-transform duration-300">
+      <h4 class="text-xl font-bold mb-1 {variantStyles[variant].title} group-hover:scale-105 transition-transform duration-300">
         {title}
-      </h3>
+      </h4>
       <div class="flex flex-col items-center">
         {#if price.toLowerCase() === 'equity'}
           <span class="text-2xl font-bold {variantStyles[variant].price}">{price}</span>

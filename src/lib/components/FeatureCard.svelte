@@ -35,9 +35,9 @@
         </svg>
       </div>
       <div class="flex-1">
-        <h3 class="text-xl font-bold mb-2 {variantStyles[variant].title} group-hover:scale-105 transition-transform duration-300">
+        <h4 class="text-xl font-bold mb-2 {variantStyles[variant].title} group-hover:scale-105 transition-transform duration-300">
           {title}
-        </h3>
+        </h4>
         <p class="text-gray-600 leading-relaxed">{description}</p>
       </div>
     </div>
