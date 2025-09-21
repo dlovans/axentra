@@ -20,12 +20,12 @@
   <div class="navbar-capsule flex items-center justify-between px-6 py-4 mx-4 md:mx-8 w-full max-w-4xl rounded-xl backdrop-blur-sm bg-white/60 border border-gray-200/60 shadow-lg shadow-gray-300/20">
     <!-- Logo and Brand -->
     <div class="flex items-center">
-      <h1 class="text-xl md:text-2xl font-bold text-gray-800">
+      <div class="text-xl md:text-2xl font-bold text-gray-800">
         <span class="flex gap-2 text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-600 to-orange-500">
           <img src="/favicon.png" alt="Axentra Logo" class="w-8">
           Axentra
         </span>
-      </h1>
+      </div>
     </div>
     
     <!-- Navigation Buttons or Back Button -->
