@@ -7,58 +7,40 @@
   <!-- Homepage -->
   <url>
     <loc>https://axentra.agency/</loc>
-    <lastmod>2025-03-15</lastmod>
+    <lastmod>2025-01-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- Login Page -->
-  <url>
-    <loc>https://axentra.agency/login</loc>
-    <lastmod>2025-03-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
+
   <!-- Policies Index Page -->
   <url>
     <loc>https://axentra.agency/policies</loc>
-    <lastmod>2025-03-15</lastmod>
+    <lastmod>2025-01-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.5</priority>
   </url>
-  
+
   <!-- Security Policy Page -->
   <url>
     <loc>https://axentra.agency/policies/security</loc>
-    <lastmod>2025-03-15</lastmod>
+    <lastmod>2025-01-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.4</priority>
   </url>
-  
+
   <!-- Terms of Service Page -->
   <url>
     <loc>https://axentra.agency/policies/terms</loc>
-    <lastmod>2025-03-15</lastmod>
+    <lastmod>2025-01-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.4</priority>
   </url>
-  
+
   <!-- Privacy Policy Page -->
   <url>
     <loc>https://axentra.agency/policies/privacy</loc>
-    <lastmod>2025-03-15</lastmod>
+    <lastmod>2025-01-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.4</priority>
   </url>
-  
-  <!-- Add any additional pages your site has -->
-  <!-- Example:
-  <url>
-    <loc>https://axentra.agency/about</loc>
-    <lastmod>2025-03-15T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  -->
-</urlset> 
+</urlset>

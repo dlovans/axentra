@@ -1,15 +1,53 @@
-# Axentra - Rapid MVP Development for Startups
+# Axentra - Custom API Development & Backend Solutions
 
-> This file provides information about Axentra, a startup development agency that builds market-ready MVPs in 3-8 weeks.
+> This file provides information about Axentra, a solo API development consultancy specializing in robust backend systems and integrations.
 
 ## Available Documentation
 
-- `/llms-full.txt` - Complete company and service information
-- `/llms-medium.txt` - Essential services and portfolio overview  
+- `/llms-full.txt` - Complete API services and technical details
+- `/llms-medium.txt` - Essential services and pricing overview
 - `/llms-small.txt` - Brief company summary
 
 ## About Axentra
 
-Axentra helps startups and entrepreneurs transform their ideas into market-ready products through rapid development. We specialize in building MVPs that help validate ideas, attract investors, and beat competitors to market.
+I help businesses transform their app ideas into reality with robust backend systems. I specialize in custom API development, solving integration headaches, performance bottlenecks, and scaling challenges so you can focus on your business.
+
+## Core Services
+
+### API Development
+Custom API development from ground up with proper architecture, documentation, and testing. I build APIs that are reliable, maintainable, and developer-friendly.
+
+### System Integration
+Seamless integration between different systems and services. I connect your applications with third-party APIs, databases, and external services efficiently.
+
+### API Maintenance
+Ongoing support, monitoring, and optimization of existing APIs. I ensure your APIs stay performant, secure, and up-to-date with evolving requirements.
+
+## Technical Expertise
+
+- **REST API Design & Implementation**
+- **Backend Frameworks:** Go (primary), Node.js (secondary)
+- **Databases:** PostgreSQL, MongoDB, Redis
+- **Cloud Platforms:** Railway, Firebase, Supabase
+- **Third-party API Integration**
+- **Webhook Implementation**
+- **API Performance Tuning**
+- **Authentication & Security**
+- **Rate Limiting & Caching**
+- **API Documentation**
+
+## Pricing Models
+
+- **Hourly Rate:** $100/hour ex. tax - Perfect for consultations, code reviews, and maintenance
+- **Fixed Price:** Minimum $8,000/project ex. tax - Complete API development with defined scope
+- **Retainer:** $7,500/month ex. tax - Ongoing maintenance and priority support
+- **Enterprise:** Custom pricing for large-scale architecture and long-term partnerships
+
+## Why Choose Axentra
+
+- **Solo Expert:** Direct communication with the developer, no middlemen
+- **Performance Focus:** I optimize for speed, scalability, and reliability
+- **Integration Specialist:** Expert at connecting disparate systems seamlessly
+- **Stockholm Based:** Local presence with global service capability
 
 **Contact:** dlovan@axentra.agency | +46 72 865 2474 | https://axentra.agency

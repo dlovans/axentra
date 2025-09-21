@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Axentra Structured Data Test</title>
+  <title>Axentra | Custom API Development & Backend Solutions | Stockholm</title>
 </head>
 <body>
   <h1>Axentra Structured Data Test Page</h1>
@@ -14,14 +14,14 @@
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Axentra Startups AB",
+    "name": "Axentra",
     "url": "https://axentra.agency/",
     "logo": "https://axentra.agency/favicon-192.png",
     "image": [
       "https://axentra.agency/favicon.svg",
       "https://axentra.agency/favicon-192.png"
     ],
-    "description": "Axentra hjälper startups att snabbt utveckla marknadsfärdiga MVP-webbappar med flexibla prismodeller och expertis inom webbutveckling.",
+    "description": "Custom API development and backend solutions specialist. I solve integration challenges, optimize API performance, and build scalable backend systems for businesses in Stockholm and globally.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Stockholm",
@@ -46,12 +46,29 @@
       },
       "instrument": {
         "@type": "WebSite",
-        "name": "Axentra | Snabb MVP-utveckling för startups"
+        "name": "Axentra | Custom API Development & Backend Solutions"
       }
     },
     "offers": {
-      "@type": "Offer",
-      "description": "MVP-utveckling för startups",
+      "@type": "AggregateOffer",
+      "offerCount": "3",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Custom API Development",
+          "description": "REST API design, implementation, and optimization for enterprise applications"
+        },
+        {
+          "@type": "Offer",
+          "name": "API Integration Services",
+          "description": "Third-party API integration, webhook implementation, and system connectivity solutions"
+        },
+        {
+          "@type": "Offer",
+          "name": "Backend System Architecture",
+          "description": "Scalable backend design, microservices development, and database optimization"
+        }
+      ],
       "areaServed": {
         "@type": "Country",
         "name": "Sweden"
@@ -66,8 +83,9 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "url": "https://axentra.agency/",
-    "name": "Axentra | Snabb MVP-utveckling för startups",
-    "description": "Axentra hjälper startups att snabbt utveckla marknadsfärdiga MVP-webbappar med flexibla prismodeller.",
+    "name": "Axentra | Custom API Development & Backend Solutions",
+    "description": "Expert API development services. I build custom REST APIs, solve integration challenges, optimize performance bottlenecks, and create scalable backend systems for modern applications.",
+    "keywords": "custom API development, backend solutions, API integration services, REST API, microservices, API performance optimization, scalable backend systems, API consulting Stockholm",
     "potentialAction": {
       "@type": "SearchAction",
       "target": "https://axentra.agency/search?q={search_term_string}",
@@ -76,17 +94,18 @@
   }
   </script>
   
-  <!-- Local Business Schema -->
+  <!-- Professional Service Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Axentra Startups AB",
+    "@type": "ProfessionalService",
+    "name": "Axentra",
     "image": "https://axentra.agency/favicon-192.png",
     "@id": "https://axentra.agency",
     "url": "https://axentra.agency",
     "telephone": "",
-    "priceRange": "$$",
+    "priceRange": "$$-$$$",
+    "description": "Professional API development and backend engineering services. I specialize in custom REST API development, third-party integrations, performance optimization, and scalable architecture design.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "",
@@ -99,6 +118,30 @@
       "latitude": 59.3293,
       "longitude": 18.0686
     },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Stockholm"
+      },
+      {
+        "@type": "Country",
+        "name": "Sweden"
+      },
+      {
+        "@type": "Place",
+        "name": "Europe"
+      }
+    ],
+    "serviceType": [
+      "Custom API Development",
+      "Backend System Architecture",
+      "API Integration Services",
+      "Microservices Development",
+      "API Performance Optimization",
+      "Database Design and Optimization",
+      "Cloud API Solutions",
+      "Webhook Implementation"
+    ],
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": [
@@ -126,9 +169,88 @@
     "itemListElement": [{
       "@type": "ListItem",
       "position": 1,
-      "name": "Hem",
+      "name": "Custom API Solutions",
       "item": "https://axentra.agency/"
     }]
+  }
+  </script>
+
+  <!-- Service Schema for specific API services -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Software Development",
+    "provider": {
+      "@type": "Organization",
+      "name": "Axentra"
+    },
+    "name": "Custom API Development Services",
+    "description": "End-to-end API development services including REST API design, GraphQL implementation, API gateway setup, authentication systems, rate limiting, caching strategies, and comprehensive documentation.",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "API Development Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "REST API Development",
+            "description": "Custom RESTful API design and implementation with best practices for scalability and security"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "API Integration",
+            "description": "Seamless integration with third-party APIs, payment gateways, and cloud services"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Performance Optimization",
+            "description": "API performance tuning, caching implementation, and bottleneck resolution"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- FAQ Schema for common API questions -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What types of API development services does Axentra offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I specialize in custom REST API development, GraphQL APIs, third-party API integrations, webhook implementations, microservices architecture, and API performance optimization for businesses in Stockholm and globally."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does Axentra handle API scalability challenges?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I design APIs with scalability in mind, implementing proper caching strategies, database optimization, load balancing, and cloud-native architectures to handle growing traffic and ensure consistent performance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What industries does Axentra serve with API solutions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I provide API development services for various industries including fintech, e-commerce, SaaS platforms, healthcare tech, and enterprise applications, with expertise in handling complex integration requirements and compliance standards."
+        }
+      }
+    ]
   }
   </script>
 </body>

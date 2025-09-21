@@ -1,8 +1,8 @@
-Axentra builds market-ready MVPs for startups in 3-8 weeks. We help entrepreneurs validate ideas, attract investors, and launch faster than competitors.
+Axentra provides custom API development and backend solutions for modern applications. I specialize in building robust REST APIs, solving integration challenges, and optimizing performance bottlenecks.
 
-Services: Rapid prototyping, investment-ready MVPs, AI platforms, web applications
-Portfolio: 25+ projects including Vevra, Alentra, ThinkStep, TrendiFi, Believers United
-Pricing: Hourly, fixed-price, equity partnerships, co-founder arrangements
-Process: 24hr response → discovery meeting → planning → rapid development
+Services: Custom API development, system integration, API maintenance, performance optimization
+Expertise: REST APIs, Go, Node.js, PostgreSQL, Railway, Firebase, Supabase
+Pricing: $100/hour, Fixed projects from $8,000, Monthly retainer $7,500
+Location: Stockholm, Sweden - serving clients globally
 
 Contact: dlovan@axentra.agency | +46 72 865 2474 | https://axentra.agency

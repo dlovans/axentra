@@ -1,43 +1,50 @@
-# Axentra - Startup Development Agency
+# Axentra - Custom API Development & Backend Solutions
 
-## What We Do
-Axentra specializes in rapid MVP development for startups and entrepreneurs. We build market-ready products in 3-8 weeks, helping startups validate ideas, attract investors, and launch faster than competitors.
+## What I Do
+I specialize in custom API development and backend solutions for modern applications. I help businesses transform their ideas into reality by building robust backend systems, solving integration challenges, and optimizing performance bottlenecks.
 
 ## Core Services
-- **Rapid Prototyping:** Concept to clickable prototype in days
-- **Investment-Ready MVPs:** Products that impress investors and early users
-- **AI Platform Development:** AI-powered platforms and APIs
-- **Web Applications:** Modern, scalable, user-focused applications
-- **Enterprise Solutions:** Complex systems with advanced integrations
+- **Custom API Development:** REST and GraphQL APIs built from ground up with proper architecture
+- **System Integration:** Seamless connection between applications, third-party APIs, and databases
+- **API Maintenance:** Ongoing support, monitoring, and optimization of existing APIs
+- **Performance Optimization:** Solving bottlenecks, implementing caching, and ensuring scalability
+
+## Technical Expertise
+- **API Technologies:** REST API design and implementation
+- **Backend Frameworks:** Go (primary), Node.js (secondary)
+- **Database Systems:** PostgreSQL, MongoDB, Redis
+- **Cloud Platforms:** Railway, Firebase, Supabase
+- **Integration Tools:** Webhooks, third-party APIs, event-driven architecture
 
 ## Why Choose Axentra
-- **100% Startup-Focused:** Deep understanding of startup challenges and investor expectations
-- **Lightning Fast:** 2-4 weeks to MVP, complete projects in 4-14 weeks
-- **Perfect Track Record:** 100% on-time delivery across 25+ projects
-- **Cost-Effective:** Maximize runway with flexible pricing models
-
-## Portfolio Examples
-- **Vevra:** Community engagement platform (In Progress)
-- **Alentra:** AI-powered job matching platform (8 weeks)
-- **ThinkStep:** Enterprise AI agent infrastructure (6 weeks)
-- **TrendiFi:** AI business intelligence API (4 weeks)
-- **Believers United:** Community platform (3 weeks)
+- **Solo Expert:** Direct communication with the developer, no middlemen or overhead
+- **Performance Focus:** APIs built for speed, reliability, and scalability from day one
+- **Integration Specialist:** Expert at connecting disparate systems seamlessly
+- **Documentation First:** Comprehensive API documentation for easy team adoption
 
 ## Pricing Models
-1. **Hourly Rate** - Maximum flexibility, no long-term commitment
-2. **Fixed Price** - Predictable cost with defined scope
-3. **Fixed Price + Equity** - Lower initial cost, shared interests (Recommended)
-4. **Co-Founder** - Full strategic partnership commitment
+1. **Hourly Rate:** $100/hour ex. tax - Perfect for consultations and maintenance
+2. **Fixed Price:** From $8,000/project ex. tax - Complete API development with defined scope
+3. **Monthly Retainer:** $7,500/month ex. tax - Ongoing support and priority service
+4. **Enterprise:** Custom pricing for large-scale architecture and partnerships
+
+## Recent Projects
+- **E-commerce API:** Complete REST API for multi-vendor marketplace
+- **Financial Integration:** Banking API integration with real-time transactions
+- **IoT Backend:** Scalable API handling millions of device connections
+- **Healthcare Platform:** HIPAA-compliant API with complex data workflows
+- **SaaS Infrastructure:** Multi-tenant API architecture with advanced permissions
 
 ## Process
-1. **Initial Contact** - 24-hour response time
-2. **Discovery Meeting** - Understand vision and requirements
-3. **Planning & Agreement** - Define scope, timeline, pricing
-4. **Development & Feedback** - Continuous updates and testing
+1. **Initial Consultation** - Understanding your requirements and challenges
+2. **Architecture Design** - Planning scalable, maintainable API structure
+3. **Implementation** - Building with best practices and continuous testing
+4. **Documentation & Deployment** - Comprehensive docs and smooth deployment
+5. **Support & Maintenance** - Ongoing optimization and updates
 
 ## Contact Information
 - **Email:** dlovan@axentra.agency
 - **WhatsApp:** +46 72 865 2474
 - **Website:** https://axentra.agency
 - **Booking:** https://calendly.com/axentra-agency/30min
-- **Location:** Stockholm, Sweden (Remote-friendly)
+- **Location:** Stockholm, Sweden (Serving clients globally)
