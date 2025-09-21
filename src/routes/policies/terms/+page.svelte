@@ -1,22 +1,37 @@
 <script>
   import { onMount } from 'svelte';
-  import { setPageTitle } from '$lib/stores/page-title.js';
-  
+
   let language = 'sv'; // Default to Swedish
-  
+
   onMount(() => {
-    setPageTitle('Användarvillkor');
     // Check browser language preference
     const browserLang = navigator.language || navigator.userLanguage;
     if (browserLang.startsWith('en')) {
       language = 'en';
     }
   });
-  
+
   function toggleLanguage() {
     language = language === 'sv' ? 'en' : 'sv';
   }
 </script>
+
+<svelte:head>
+  <title>{language === 'sv' ? 'Användarvillkor | Axentra' : 'Terms of Service | Axentra'}</title>
+  <meta name="description" content={language === 'sv' ? 'Villkoren som gäller när du använder våra tjänster. Läs om dina rättigheter och skyldigheter.' : 'The terms that apply when you use our services. Read about your rights and obligations.'} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://axentra.agency/policies/terms" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={language === 'sv' ? 'Användarvillkor | Axentra' : 'Terms of Service | Axentra'} />
+  <meta property="og:description" content={language === 'sv' ? 'Villkoren som gäller när du använder våra tjänster. Läs om dina rättigheter och skyldigheter.' : 'The terms that apply when you use our services. Read about your rights and obligations.'} />
+  <meta property="og:url" content="https://axentra.agency/policies/terms" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:title" content={language === 'sv' ? 'Användarvillkor | Axentra' : 'Terms of Service | Axentra'} />
+  <meta name="twitter:description" content={language === 'sv' ? 'Villkoren som gäller när du använder våra tjänster. Läs om dina rättigheter och skyldigheter.' : 'The terms that apply when you use our services. Read about your rights and obligations.'} />
+</svelte:head>
 
 <div class="container mx-auto px-4 py-12 max-w-4xl">
   <div class="flex justify-between items-center mb-8">

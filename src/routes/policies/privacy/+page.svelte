@@ -1,22 +1,37 @@
 <script>
   import { onMount } from 'svelte';
-  import { setPageTitle } from '$lib/stores/page-title.js';
-  
+
   let language = 'sv'; // Default to Swedish
-  
+
   onMount(() => {
-    setPageTitle('Integritetspolicy');
     // Check browser language preference
     const browserLang = navigator.language || navigator.userLanguage;
     if (browserLang.startsWith('en')) {
       language = 'en';
     }
   });
-  
+
   function toggleLanguage() {
     language = language === 'sv' ? 'en' : 'sv';
   }
 </script>
+
+<svelte:head>
+  <title>{language === 'sv' ? 'Integritetspolicy | Axentra' : 'Privacy Policy | Axentra'}</title>
+  <meta name="description" content={language === 'sv' ? 'Hur vi samlar in, använder och skyddar dina personuppgifter. Läs om dina rättigheter enligt GDPR.' : 'How we collect, use, and protect your personal data. Read about your rights under GDPR.'} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://axentra.agency/policies/privacy" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={language === 'sv' ? 'Integritetspolicy | Axentra' : 'Privacy Policy | Axentra'} />
+  <meta property="og:description" content={language === 'sv' ? 'Hur vi samlar in, använder och skyddar dina personuppgifter. Läs om dina rättigheter enligt GDPR.' : 'How we collect, use, and protect your personal data. Read about your rights under GDPR.'} />
+  <meta property="og:url" content="https://axentra.agency/policies/privacy" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:title" content={language === 'sv' ? 'Integritetspolicy | Axentra' : 'Privacy Policy | Axentra'} />
+  <meta name="twitter:description" content={language === 'sv' ? 'Hur vi samlar in, använder och skyddar dina personuppgifter. Läs om dina rättigheter enligt GDPR.' : 'How we collect, use, and protect your personal data. Read about your rights under GDPR.'} />
+</svelte:head>
 
 <div class="container mx-auto px-4 py-12 max-w-4xl">
   <div class="flex justify-between items-center mb-8">
