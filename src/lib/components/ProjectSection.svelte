@@ -16,6 +16,15 @@
         scope: "31 API Endpoints"
       },
       {
+        title: "Free-Minds",
+        description: "Database migration project involving 720,000+ records from MariaDB to PostgreSQL. Built 5 custom APIs to handle complex data transformations and mappings for Redis-style PostgreSQL architecture, plus developed a new client website. Migration completed in 7 days.",
+        image: "/freeminds.png",
+        demoUrl: "https://www.free-minds.org",
+        variant: "secondary",
+        developmentTime: "5 weeks",
+        scope: "5 APIs + Website"
+      },
+      {
         title: "Alentra",
         description: "Advanced AI-powered job matching platform that connects candidates with opportunities based on skills and compatibility rather than keyword matching. Revolutionizes recruitment by focusing on meaningful job-candidate alignment.",
         image: "/alentra.png",
