@@ -16,11 +16,11 @@
   }
 </script>
 
-<div class="fixed top-6 left-0 right-0 z-50 flex justify-center">
-  <div class="navbar-capsule flex items-center justify-between px-6 py-4 mx-4 md:mx-8 w-full max-w-4xl rounded-xl backdrop-blur-sm bg-white/60 border border-gray-200/60 shadow-lg shadow-gray-300/20">
+<div class="fixed left-0 right-0 z-50 flex justify-center top-6">
+  <div class="flex items-center justify-between w-full max-w-4xl px-6 py-4 mx-4 border shadow-lg navbar-capsule md:mx-8 rounded-xl backdrop-blur-sm bg-white/60 border-gray-200/60 shadow-gray-300/20">
     <!-- Logo and Brand -->
     <div class="flex items-center">
-      <div class="text-xl md:text-2xl font-bold text-gray-800">
+      <div class="text-xl font-bold text-gray-800 md:text-2xl">
         <span class="flex gap-2 text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-600 to-orange-500">
           <img src="/favicon.png" alt="Axentra Logo" class="w-8">
           Axentra
@@ -30,54 +30,58 @@
     
     <!-- Navigation Buttons or Back Button -->
     {#if showBackButton}
-      <a href="/" class="px-6 py-3 md:px-8 md:py-3 rounded-xl bg-gray-100/80 text-gray-700 font-medium text-base md:text-lg hover:bg-gray-200/80 transition-all duration-300">
+      <a href="/" class="px-6 py-3 text-base font-medium text-gray-700 transition-all duration-300 md:px-8 md:py-3 rounded-xl bg-gray-100/80 md:text-lg hover:bg-gray-200/80">
         Back
       </a>
     {:else}
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center space-x-1">
+      <nav class="items-center hidden space-x-1 md:flex">
         <button 
           onclick={() => scrollToSection('hero')} 
-          class="px-4 py-2 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100/50 rounded-lg transition-all duration-200"
+          class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
         >
           Home
         </button>
         <button 
           onclick={() => scrollToSection('features')} 
-          class="px-4 py-2 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100/50 rounded-lg transition-all duration-200"
+          class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
         >
           Services
         </button>
         <button 
           onclick={() => scrollToSection('process')} 
-          class="px-4 py-2 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100/50 rounded-lg transition-all duration-200"
+          class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
         >
           Process
         </button>
         <button 
           onclick={() => scrollToSection('pricing-section')} 
-          class="px-4 py-2 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100/50 rounded-lg transition-all duration-200"
+          class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
         >
           Pricing
         </button>
         <button 
           onclick={() => scrollToSection('projects-section')} 
-          class="px-4 py-2 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100/50 rounded-lg transition-all duration-200"
+          class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
         >
           Projects
         </button>
         <button 
           onclick={() => scrollToSection('contact-section')} 
-          class="px-4 py-2 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100/50 rounded-lg transition-all duration-200"
+          class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
         >
           Contact
         </button>
+        <a
+        href="https://blog.axentra.agency"
+        class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
+        target="_blank">Blog</a>
       </nav>
       
       <!-- Mobile Menu Button -->
       <button 
         onclick={toggleMobileMenu}
-        class="md:hidden p-2 rounded-lg hover:bg-gray-100/50 transition-all duration-200"
+        class="p-2 transition-all duration-200 rounded-lg md:hidden hover:bg-gray-100/50"
         aria-label="Toggle mobile menu"
       >
         <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -94,44 +98,49 @@
 
 <!-- Mobile Dropdown Menu -->
 {#if !showBackButton && mobileMenuOpen}
-  <div class="fixed top-24 left-4 right-4 z-40 md:hidden">
-    <div class="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-xl shadow-lg shadow-gray-300/20 py-2">
+  <div class="fixed z-40 top-24 left-4 right-4 md:hidden">
+    <div class="py-2 border border-gray-200 shadow-lg bg-white/95 backdrop-blur-sm rounded-xl shadow-gray-300/20">
       <button 
         onclick={() => scrollToSection('hero')} 
-        class="w-full text-left px-6 py-3 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100/50 transition-all duration-200"
+        class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
       >
         Home
       </button>
       <button 
         onclick={() => scrollToSection('features')} 
-        class="w-full text-left px-6 py-3 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100/50 transition-all duration-200"
+        class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
       >
         Services
       </button>
       <button 
         onclick={() => scrollToSection('process')} 
-        class="w-full text-left px-6 py-3 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100/50 transition-all duration-200"
+        class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
       >
         Process
       </button>
       <button 
         onclick={() => scrollToSection('pricing-section')} 
-        class="w-full text-left px-6 py-3 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100/50 transition-all duration-200"
+        class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
       >
         Pricing
       </button>
       <button 
         onclick={() => scrollToSection('projects-section')} 
-        class="w-full text-left px-6 py-3 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100/50 transition-all duration-200"
+        class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
       >
         Projects
       </button>
       <button 
         onclick={() => scrollToSection('contact-section')} 
-        class="w-full text-left px-6 py-3 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100/50 transition-all duration-200"
+        class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
       >
         Contact
       </button>
+      <a
+      href="https://blog.axentra.agency"
+      class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
+      target="_blank"
+      >Blog</a>
     </div>
   </div>
 {/if}
