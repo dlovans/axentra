@@ -29,9 +29,9 @@
 </script>
 
 <article class="overflow-hidden transition-all duration-300 border bg-surface border-border rounded-xl hover:shadow-lg hover:border-blue-800/30">
-  <div class="overflow-hidden aspect-video bg-gray-50">
+  <div class="overflow-hidden aspect-video bg-gray-50 flex items-center justify-center">
     {#if post.image}
-      <img src={post.image} alt={post.title} loading="lazy" class="object-contain w-full h-full" />
+      <img src={post.image} alt={post.title} loading="lazy" class="object-cover w-full h-full" />
     {:else}
       <div class="w-full h-full {getPlaceholderColor(post.title)} flex items-center justify-center">
         <div class="p-6 text-center text-white">

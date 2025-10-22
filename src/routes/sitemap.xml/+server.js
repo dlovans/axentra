@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+import { getAllPosts } from '$lib/utils/posts.js';
+
+export async function GET() {
+  const posts = getAllPosts();
+  const baseUrl = 'https://axentra.agency';
+
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
@@ -6,15 +12,15 @@
                             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Homepage -->
   <url>
-    <loc>https://axentra.agency/</loc>
-    <lastmod>2025-01-21</lastmod>
+    <loc>${baseUrl}/</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Policies Index Page -->
   <url>
-    <loc>https://axentra.agency/policies</loc>
+    <loc>${baseUrl}/policies</loc>
     <lastmod>2025-01-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -22,7 +28,7 @@
 
   <!-- Security Policy Page -->
   <url>
-    <loc>https://axentra.agency/policies/security</loc>
+    <loc>${baseUrl}/policies/security</loc>
     <lastmod>2025-01-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
@@ -30,7 +36,7 @@
 
   <!-- Terms of Service Page -->
   <url>
-    <loc>https://axentra.agency/policies/terms</loc>
+    <loc>${baseUrl}/policies/terms</loc>
     <lastmod>2025-01-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
@@ -38,7 +44,7 @@
 
   <!-- Privacy Policy Page -->
   <url>
-    <loc>https://axentra.agency/policies/privacy</loc>
+    <loc>${baseUrl}/policies/privacy</loc>
     <lastmod>2025-01-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
@@ -46,38 +52,28 @@
 
   <!-- Blog Index Page -->
   <url>
-    <loc>https://axentra.agency/blog</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>${baseUrl}/blog</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Blog Posts -->
-  <url>
-    <loc>https://axentra.agency/blog/api-development-cost-2025</loc>
-    <lastmod>2025-10-22</lastmod>
+${posts
+  .filter(post => !post.draft)
+  .map(post => `  <url>
+    <loc>${baseUrl}/blog/${post.postName}</loc>
+    <lastmod>${post.date}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+    <priority>${post.featured ? '0.7' : '0.6'}</priority>
+  </url>`)
+  .join('\n')}
+</urlset>`;
 
-  <url>
-    <loc>https://axentra.agency/blog/build-vs-buy-api-2025</loc>
-    <lastmod>2025-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://axentra.agency/blog/8-signs-need-custom-api</loc>
-    <lastmod>2025-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://axentra.agency/blog/in-house-vs-agency-api-development</loc>
-    <lastmod>2025-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-</urlset>
+  return new Response(sitemap, {
+    headers: {
+      'Content-Type': 'application/xml',
+      'Cache-Control': 'max-age=0, s-maxage=3600'
+    }
+  });
+}

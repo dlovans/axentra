@@ -12,19 +12,19 @@
       card: "bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200 shadow-lg shadow-orange-500/10",
       title: "text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-600 to-orange-500",
       desc: "text-gray-600",
-      button: "bg-gradient-to-r from-gray-800 to-orange-500 hover:shadow-xl hover:shadow-orange-500/25 text-white"
+      button: "bg-white border-2 border-orange-500 hover:bg-orange-50 hover:shadow-xl hover:shadow-orange-500/25 text-orange-600 hover:text-orange-700"
     },
     secondary: {
       card: "bg-gradient-to-br from-gray-900 to-gray-800 border-2 border-gray-700 shadow-lg shadow-gray-900/20",
       title: "text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-gray-300 to-orange-400",
       desc: "text-gray-300",
-      button: "bg-gradient-to-r from-orange-500 to-orange-600 hover:shadow-xl hover:shadow-orange-500/25 text-white"
+      button: "bg-white border-2 border-orange-500 hover:bg-orange-50 hover:shadow-xl hover:shadow-orange-500/25 text-orange-600 hover:text-orange-700"
     },
     accent: {
       card: "bg-gradient-to-br from-slate-100 via-gray-50 to-slate-100 border-2 border-gray-300 shadow-xl shadow-gray-400/20",
       title: "text-slate-700 font-extrabold",
       desc: "text-slate-600",
-      button: "bg-gradient-to-br from-slate-600 to-slate-700 hover:shadow-xl hover:shadow-slate-500/25 text-white"
+      button: "bg-white border-2 border-orange-500 hover:bg-orange-50 hover:shadow-xl hover:shadow-orange-500/25 text-orange-600 hover:text-orange-700"
     }
   };
 </script>

@@ -11,7 +11,7 @@
       card: "bg-gradient-to-br from-gray-900 to-gray-800 border-2 border-blue-400 shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20",
       iconBg: "bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg",
       title: "text-blue-400",
-      text: "text-gray-200"
+      text: "text-gray-200 [&_p]:text-gray-200 [&_strong]:text-white [&_ul]:text-gray-200 [&_li]:text-gray-200"
     },
     secondary: {
       card: "bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200 shadow-lg shadow-orange-500/10 hover:shadow-orange-500/20",
