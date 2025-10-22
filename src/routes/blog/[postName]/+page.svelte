@@ -29,7 +29,7 @@
   });
 </script>
 
-<Navbar />
+<Navbar isBlog={true} />
 
 <ParticleBackground>
 <div class="min-h-screen px-4 pt-32 pb-12">

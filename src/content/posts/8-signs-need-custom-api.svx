@@ -338,15 +338,10 @@ Many legacy systems lack modern APIs but can still be integrated through databas
 ---
 
 <NextPreviousPosts
-  previousPost={{
-    title: "When to Build vs Buy an API: A 2025 Decision Framework",
+  nextPost={{
+    title: "When to Build vs Buy an API: A 2025 Decision Framework for Business Leaders",
     description: "Should you build or buy an API? Use this 6-factor framework to make the right choice with real costs and TCO analysis",
     slug: "build-vs-buy-api-2025"
-  }}
-  nextPost={{
-    title: "In-House vs Agency API Development: True Cost Analysis 2025",
-    description: "Should you hire API developers or use an agency? Complete 3-year cost comparison with hidden costs, ROI analysis & decision framework.",
-    slug: "in-house-vs-agency-api-development"
   }}
   variant="primary"
 />
@@ -355,24 +350,30 @@ Many legacy systems lack modern APIs but can still be integrated through databas
   posts={[
     {
       title: "How Much Does Custom API Development Cost in 2025? Complete Budget Guide",
-      description: "Custom API development costs $2K-$150K+ in 2025. Get accurate pricing for simple, complex & enterprise APIs plus hidden costs and ROI data.",
+      description: "Custom API development costs $2K-$150K+ in 2025. Get accurate pricing for simple, complex & enterprise APIs plus hidden costs, ROI data & in-house vs agency comparison.",
       slug: "api-development-cost-2025",
+      date: "2025-10-22",
+      author: "Axentra Agency",
       tags: ["api-development", "pricing"],
-      image: "/favicon.png"
+      image: "/blog/api_pricing.png"
     },
     {
       title: "In-House vs Agency API Development: True Cost Analysis 2025",
-      description: "Should you hire API developers or use an agency? Complete 3-year cost comparison: $503K-$593K in-house vs $360K agency.",
+      description: "Should you hire API developers or use an agency? Complete 3-year cost comparison: $503K-$593K in-house vs $360K agency. Includes hidden costs, ROI analysis & decision framework.",
       slug: "in-house-vs-agency-api-development",
-      tags: ["api-development", "hiring"],
-      image: "/favicon.png"
+      date: "2025-10-19",
+      author: "Axentra Agency",
+      tags: ["api-development", "business-strategy", "hiring"],
+      image: "/blog/inhouse_agency.png"
     },
     {
-      title: "When to Build vs Buy an API: A 2025 Decision Framework",
-      description: "Should you build or buy an API? Use this 6-factor framework with real costs, TCO analysis & hybrid strategies",
+      title: "When to Build vs Buy an API: A 2025 Decision Framework for Business Leaders",
+      description: "Should you build or buy an API? Use this 6-factor framework to make the right choice. Includes real costs, TCO analysis & hybrid strategies for 2025.",
       slug: "build-vs-buy-api-2025",
+      date: "2025-10-14",
+      author: "Axentra Agency",
       tags: ["api-development", "business-strategy"],
-      image: "/favicon.png"
+      image: "/blog/build_vs_buy.png"
     }
   ]}
   variant="primary"

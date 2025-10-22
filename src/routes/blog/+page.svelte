@@ -47,7 +47,7 @@
     <meta name="keywords" content="Axentra Agency news, custom API development, freelance, consultation, backend development, API developer" />
 </svelte:head>
 
-<Navbar />
+<Navbar isBlog={true} />
 <ParticleBackground>
 
 <div class="min-h-screen px-4 pt-32 pb-12">

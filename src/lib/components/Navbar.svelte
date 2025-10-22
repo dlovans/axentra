@@ -1,8 +1,8 @@
 <script>
   // Props for the navbar
-  let { showBackButton = false } = $props();
+  let { showBackButton = false, isBlog = false } = $props();
   let mobileMenuOpen = $state(false);
-  
+
   function scrollToSection(sectionId) {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -10,7 +10,7 @@
       mobileMenuOpen = false; // Close mobile menu after navigation
     }
   }
-  
+
   function toggleMobileMenu() {
     mobileMenuOpen = !mobileMenuOpen;
   }
@@ -35,47 +35,66 @@
       </a>
     {:else}
       <!-- Desktop Navigation -->
-      <nav class="items-center hidden space-x-1 md:flex">
-        <button 
-          onclick={() => scrollToSection('hero')} 
+      {#if isBlog}
+        <a
+          href="/"
           class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
         >
           Home
-        </button>
-        <button 
-          onclick={() => scrollToSection('features')} 
-          class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
-        >
-          Services
-        </button>
-        <button 
-          onclick={() => scrollToSection('process')} 
-          class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
-        >
-          Process
-        </button>
-        <button 
-          onclick={() => scrollToSection('pricing-section')} 
-          class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
-        >
-          Pricing
-        </button>
-        <button 
-          onclick={() => scrollToSection('projects-section')} 
-          class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
-        >
-          Projects
-        </button>
-        <button 
-          onclick={() => scrollToSection('contact-section')} 
-          class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
-        >
-          Contact
-        </button>
-        <a 
-        href="/blog"
-        class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
-        >Blog</a>
+        </a>
+      {/if}
+      <nav class="items-center hidden space-x-1 md:flex">
+        {#if isBlog}
+          <a
+            href="/blog"
+            class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
+          >
+            Blog
+          </a>
+        {:else}
+          <button
+            onclick={() => scrollToSection('hero')}
+            class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
+          >
+            Home
+          </button>
+          <button
+            onclick={() => scrollToSection('features')}
+            class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
+          >
+            Services
+          </button>
+          <button
+            onclick={() => scrollToSection('process')}
+            class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
+          >
+            Process
+          </button>
+          <button
+            onclick={() => scrollToSection('pricing-section')}
+            class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
+          >
+            Pricing
+          </button>
+          <button
+            onclick={() => scrollToSection('projects-section')}
+            class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
+          >
+            Projects
+          </button>
+          <button
+            onclick={() => scrollToSection('contact-section')}
+            class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
+          >
+            Contact
+          </button>
+          <a
+            href="/blog"
+            class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
+          >
+            Blog
+          </a>
+        {/if}
       </nav>
       
       <!-- Mobile Menu Button -->
@@ -100,44 +119,63 @@
 {#if !showBackButton && mobileMenuOpen}
   <div class="fixed z-40 top-24 left-4 right-4 md:hidden">
     <div class="py-2 border border-gray-200 shadow-lg bg-white/95 backdrop-blur-sm rounded-xl shadow-gray-300/20">
-      <button 
-        onclick={() => scrollToSection('hero')} 
-        class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
-      >
-        Home
-      </button>
-      <button 
-        onclick={() => scrollToSection('features')} 
-        class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
-      >
-        Services
-      </button>
-      <button 
-        onclick={() => scrollToSection('process')} 
-        class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
-      >
-        Process
-      </button>
-      <button 
-        onclick={() => scrollToSection('pricing-section')} 
-        class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
-      >
-        Pricing
-      </button>
-      <button 
-        onclick={() => scrollToSection('projects-section')} 
-        class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
-      >
-        Projects
-      </button>
-      <button 
-        onclick={() => scrollToSection('contact-section')} 
-        class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
-      >
-        Contact
-      </button>
-      <a href="/blog" class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50">
-        Blog</a>
+      {#if isBlog}
+        <a
+          href="/"
+          class="block w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
+        >
+          Home
+        </a>
+        <a
+          href="/blog"
+          class="block w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
+        >
+          Blog
+        </a>
+      {:else}
+        <button
+          onclick={() => scrollToSection('hero')}
+          class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
+        >
+          Home
+        </button>
+        <button
+          onclick={() => scrollToSection('features')}
+          class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
+        >
+          Services
+        </button>
+        <button
+          onclick={() => scrollToSection('process')}
+          class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
+        >
+          Process
+        </button>
+        <button
+          onclick={() => scrollToSection('pricing-section')}
+          class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
+        >
+          Pricing
+        </button>
+        <button
+          onclick={() => scrollToSection('projects-section')}
+          class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
+        >
+          Projects
+        </button>
+        <button
+          onclick={() => scrollToSection('contact-section')}
+          class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
+        >
+          Contact
+        </button>
+        <a
+          href="/blog"
+          class="block w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50"
+        >
+          Blog
+        </a>
+      {/if}
     </div>
   </div>
 {/if}
