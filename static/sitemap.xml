@@ -47,26 +47,12 @@
   <!-- Blog Index Page -->
   <url>
     <loc>https://axentra.agency/blog</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Blog Posts -->
-  <url>
-    <loc>https://axentra.agency/blog/api-development-cost-2025</loc>
-    <lastmod>2025-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://axentra.agency/blog/build-vs-buy-api-2025</loc>
-    <lastmod>2025-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
+  <!-- Blog Posts (ordered chronologically) -->
   <url>
     <loc>https://axentra.agency/blog/8-signs-need-custom-api</loc>
     <lastmod>2025-10-10</lastmod>
@@ -75,9 +61,23 @@
   </url>
 
   <url>
-    <loc>https://axentra.agency/blog/in-house-vs-agency-api-development</loc>
-    <lastmod>2025-10-22</lastmod>
+    <loc>https://axentra.agency/blog/build-vs-buy-api-2025</loc>
+    <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://axentra.agency/blog/in-house-vs-agency-api-development</loc>
+    <lastmod>2025-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://axentra.agency/blog/api-development-cost-2025</loc>
+    <lastmod>2025-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>

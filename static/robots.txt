@@ -5,13 +5,7 @@ User-agent: *
 Allow: /
 
 # Disallow specific paths
-Disallow: /dashboard/
-Disallow: /admin/
 Disallow: /api/
 
 # Sitemap location
 Sitemap: https://axentra.agency/sitemap.xml
-
-# Crawl-delay for specific bots
-User-agent: AdsBot-Google
-Crawl-delay: 1 
