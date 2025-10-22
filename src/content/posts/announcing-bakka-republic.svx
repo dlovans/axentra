@@ -1,0 +1,30 @@
+---
+title: "Bakk'a Republic"
+description: "A movement born out of frustration with the status quo, seeking to create a nation where the system of God is in place, with only the Qur'an as the source of law."
+date: "2025-10-06"
+author: "Dlovan S"
+tags: ["announcement", "governance", "featured"]
+featured: true
+draft: false
+image: "/favicon.png"
+---
+
+<script>
+  import BlockQuote from '$lib/components/blog/BlockQuote.svelte';
+</script>
+
+## The Current Crisis
+
+War, oppression, persecution, and corruption rage on in the Middle East. All systems have failed—democracy, communism, capitalism, tribalism, extremism, dictatorship, monarchy. They have been tried, yet they fail to achieve peace without corruption.
+
+## A New Path
+
+**Bakk'a Republic** is a movement born out of frustration with the status quo and seeks to create a nation where the system of God is in place, with only the Qur'an as the source of law.
+
+## Join the Mission
+
+Familiarize yourself with the constitution of the Bakk'a Republic, and answer the call! God-willing, together we can achieve what is written:
+
+<BlockQuote author="Chapter 3:104">
+And let there be a nation from among you who calls towards righteousness, and advocate for good and prohibit vice. And these are the successful ones.
+</BlockQuote> 

@@ -72,6 +72,10 @@
         >
           Contact
         </button>
+        <a 
+        href="/blog"
+        class="px-4 py-2 text-base font-medium text-gray-600 transition-all duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100/50"
+        >Blog</a>
       </nav>
       
       <!-- Mobile Menu Button -->
@@ -132,6 +136,8 @@
       >
         Contact
       </button>
+      <a href="/blog" class="w-full px-6 py-3 text-base font-medium text-left text-gray-600 transition-all duration-200 hover:text-gray-800 hover:bg-gray-100/50">
+        Blog</a>
     </div>
   </div>
 {/if}
