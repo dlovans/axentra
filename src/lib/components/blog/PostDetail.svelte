@@ -79,7 +79,7 @@
         </div>
       {/if}
 
-      <h2 class="mb-6 text-4xl font-bold leading-tight md:text-5xl text-text-primary">{post.title}</h2>
+      <h1 class="mb-6 text-4xl font-bold leading-tight md:text-5xl text-text-primary">{post.title}</h1>
 
       <div class="flex items-center mb-8 text-text-tertiary">
         <time class="font-medium" datetime={post.date}>
@@ -110,18 +110,19 @@
     </header>
 
     <div class="prose prose-lg max-w-none
-      prose-headings:text-text-primary prose-headings:font-bold
+      prose-headings:text-gray-800 prose-headings:font-bold prose-headings:no-underline
       prose-p:text-text-secondary prose-p:text-lg prose-p:leading-relaxed
-      prose-a:text-blue-800 hover:prose-a:text-blue-900
+      prose-a:text-orange-600 hover:prose-a:text-orange-700 prose-a:no-underline hover:prose-a:underline
       prose-strong:text-text-primary prose-strong:font-bold
       prose-ul:text-text-secondary prose-ul:mb-6
       prose-ol:text-text-secondary prose-ol:mb-6
       prose-li:mb-2
-      prose-blockquote:border-l-blue-800 prose-blockquote:text-text-secondary
-      prose-code:text-blue-800 prose-code:bg-blue-800/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
+      prose-blockquote:border-l-orange-500 prose-blockquote:text-text-secondary
+      prose-code:text-orange-600 prose-code:bg-orange-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
       [&_p]:mb-6
-      [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-text-primary [&_h2]:mt-8 [&_h2]:mb-4
-      [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-text-primary [&_h3]:mt-6 [&_h3]:mb-3">
+      [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:text-gray-800 [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:no-underline [&_h2]:pointer-events-none
+      [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:text-gray-700 [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:no-underline [&_h3]:pointer-events-none
+      [&_h4]:text-xl [&_h4]:font-semibold [&_h4]:text-gray-700 [&_h4]:mt-6 [&_h4]:mb-2 [&_h4]:no-underline [&_h4]:pointer-events-none">
       {@render content()}
     </div>
 

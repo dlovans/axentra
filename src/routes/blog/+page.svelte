@@ -58,7 +58,7 @@
                 News & Updates
             </h2>
             <p class="max-w-4xl mx-auto text-lg leading-relaxed text-gray-700 md:text-xl">
-                Stay informed about the latest developments in the Bakk'a Republic's journey toward reclaiming Bakk'a and establishing Islamic governance.
+                Stay informed about the latest developments in Axentra Agency and API development.
             </p>
         </div>
 

@@ -35,7 +35,7 @@
     {/if}
 
     <header class="mb-12 text-center">
-      <h2 class="mb-4 text-4xl font-bold md:text-5xl text-text-primary">{title}</h2>
+      <h1 class="mb-4 text-4xl font-bold md:text-5xl text-text-primary">{title}</h1>
       <p class="max-w-2xl mx-auto text-lg text-text-secondary">{description}</p>
     </header>
 
