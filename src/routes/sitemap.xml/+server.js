@@ -1,7 +1,7 @@
-import { getAllPosts } from '$lib/utils/posts.js';
+import { getPosts } from '$lib/utils/posts.js';
 
 export async function GET() {
-  const posts = getAllPosts();
+  const posts = getPosts();
   const baseUrl = 'https://axentra.agency';
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
