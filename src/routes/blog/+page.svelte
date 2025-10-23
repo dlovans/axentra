@@ -9,11 +9,11 @@
     let selectedCategory = $state('all');
 
     // Extract unique categories from posts and calculate counts
-    let categories = $derived([...new Set(data.posts.flatMap(post => post.tags || []))]);
+    let categories = $derived([...new Set(data.posts.map(post => post.category).filter(Boolean))]);
 
     // Calculate post counts for each category
     let categoryCounts = $derived(categories.reduce((acc, category) => {
-        acc[category] = data.posts.filter(post => post.tags?.includes(category)).length;
+        acc[category] = data.posts.filter(post => post.category === category).length;
         return acc;
     }, {}));
 
@@ -26,7 +26,7 @@
     // Filter posts based on selected category
     let filteredPosts = $derived(selectedCategory === 'all'
         ? data.posts
-        : data.posts.filter(post => post.tags?.includes(selectedCategory)));
+        : data.posts.filter(post => post.category === selectedCategory));
 
     function selectCategory(category) {
         selectedCategory = category;
